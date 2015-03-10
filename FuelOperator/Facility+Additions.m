@@ -12,27 +12,30 @@
 
 + (Facility *)updateOrCreateFromDictionary:(NSDictionary *)dict
 {
-    NSNumber *facilityID = [dict numberForKey:@"FacilityID"];
+    NSNumber *facilityID = [dict numberForKey:@"id"];
     Facility *facility = [Facility MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"facilityID == %d", [facilityID integerValue]]];
     if(!facility)
         facility = [Facility MR_createEntity];
     
     [facility updateFromDictionary:dict];
-    NSLog(@"saved facility with id %d", [facilityID integerValue]);
+//    NSLog(@"saved facility with id %d", [facilityID intValue]);
     return facility;
 }
 
 - (void)updateFromDictionary:(NSDictionary *)dict
 {
-    self.facilityID = [dict numberForKey:@"FacilityID"];
-    self.storeCode = [dict stringForKey:@"StoreCode"];
-    self.address1 = [dict stringForKey:@"Address1"];
-    self.address2 = [dict stringForKey:@"Address2"];
-    self.city = [dict stringForKey:@"City"];
-    self.state = [dict stringForKey:@"State"];
-    self.zip = [dict stringForKey:@"Zip"];
-    self.lattitude = [dict numberForKey:@"Latitude"];
-    self.longitude = [dict numberForKey:@"Longitude"];
+    self.facilityID = [dict numberForKey:@"id"];
+    self.storeCode = [dict stringForKey:@"store_code"];
+    self.address1 = [dict stringForKey:@"street1"];
+    self.address2 = [dict stringForKey:@"street2"];
+    self.city = [dict stringForKey:@"city"];
+    self.state = [dict stringForKey:@"state"];
+    self.zip = [dict stringForKey:@"postal_code"];
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    self.lattitude = [f numberFromString:[dict stringForKey:@"latitude"]];
+    self.longitude = [f numberFromString:[dict stringForKey:@"longitude"]];
 }
 
 @end

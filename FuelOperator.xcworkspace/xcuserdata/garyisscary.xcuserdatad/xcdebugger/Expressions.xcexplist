@@ -28,9 +28,6 @@
          contextName = "-[InspectionFormViewController viewDidLoad]:InspectionFormViewController.m">
       </ContextState>
       <ContextState
-         contextName = "__32-[OnlineService login:password:]_block_invoke_2:OnlineService.m">
-      </ContextState>
-      <ContextState
          contextName = "-[InspectionsListViewController locationManager:didUpdateToLocation:fromLocation:]:InspectionsListViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -39,18 +36,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__32-[OnlineService login:password:]_block_invoke_2:OnlineService.m">
+      </ContextState>
+      <ContextState
+         contextName = "__31-[OnlineService postNextAnswer]_block_invoke277:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "path">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__41-[RootContainerViewController toggleOpen]_block_invoke67:RootContainerViewController.m">
       </ContextState>
       <ContextState
          contextName = "__32-[OnlineService login:password:]_block_invoke:OnlineService.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[MapAnnotationView setSelected:]:MapAnnotationView.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.calloutOffset">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[FormCategoryView tableView:didSelectRowAtIndexPath:]:FormCategoryView.m">
@@ -86,9 +86,6 @@
          contextName = "-[OnlineService authenticate]:OnlineService.m">
       </ContextState>
       <ContextState
-         contextName = "-[InspectionFormViewController viewDidLayoutSubviews]:InspectionFormViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[FormAnswer(Additions) updateFromDictionary:]:FormAnswer+Additions.m">
          <PersistentStrings>
             <PersistentString
@@ -97,10 +94,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__31-[OnlineService postNextAnswer]_block_invoke277:OnlineService.m">
+         contextName = "-[InspectionFormViewController viewDidLayoutSubviews]:InspectionFormViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MapAnnotationView setSelected:]:MapAnnotationView.m">
          <PersistentStrings>
             <PersistentString
-               value = "path">
+               value = "self.calloutOffset">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -129,7 +129,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "__33-[OnlineService updateFacilities]_block_invoke:OnlineService.m">
+      </ContextState>
+      <ContextState
          contextName = "-[CircularProgressView drawRect:]:CircularProgressView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[FOResponseSerializer responseObjectForResponse:data:error:]:HttpManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "error">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[InspectionFormViewController tableView:heightForRowAtIndexPath:]:InspectionFormViewController.m">

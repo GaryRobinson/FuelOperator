@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13B42" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D87h" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Facility" representedClassName="Facility" syncable="YES">
         <attribute name="address1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,7 +28,8 @@
         <attribute name="imageRequired" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="mainCategory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="questionID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="questionID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recordID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="subCategory" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -66,7 +67,7 @@
     <elements>
         <element name="Facility" positionX="-747" positionY="-292" width="128" height="193"/>
         <element name="FormAnswer" positionX="-506" positionY="-279" width="128" height="148"/>
-        <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="223"/>
+        <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="238"/>
         <element name="Inspection" positionX="-756" positionY="-58" width="128" height="193"/>
         <element name="Photo" positionX="-335" positionY="-270" width="128" height="103"/>
         <element name="RequiredTypes" positionX="-351" positionY="-63" width="128" height="88"/>

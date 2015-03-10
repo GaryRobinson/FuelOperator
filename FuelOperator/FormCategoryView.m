@@ -118,7 +118,7 @@
     self.formAnswers = [NSArray arrayWithArray:answers];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     
-    [[OnlineService sharedService] getUpdatedAnswers:self.formAnswers];
+//    [[OnlineService sharedService] getUpdatedAnswers:self.formAnswers];
 }
 
 - (void)answersUpdated:(id)sender

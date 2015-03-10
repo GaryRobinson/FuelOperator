@@ -10,15 +10,14 @@
 
 @implementation FormQuestion (Additions)
 
-+ (FormQuestion *)updateOrCreateFromDictionary:(NSDictionary *)dict andInspection:(Inspection *)inspection andType:(NSString *)type
++ (FormQuestion *)updateOrCreateFromDictionary:(NSDictionary *)dict andInspection:(Inspection *)inspection
 {
-    NSNumber *questionID = [dict numberForKey:@"QuestionID"];
-    FormQuestion *question = [FormQuestion MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"questionID == %d", [questionID integerValue]]];
+    NSNumber *recordID = [dict numberForKey:@"record_id"];
+    FormQuestion *question = [FormQuestion MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"recordID == %d", [recordID integerValue]]];
     if(!question)
     {
         question = [FormQuestion MR_createEntity];
         question.inspection = inspection;
-        question.type = type;
     }
     
     [question updateFromDictionary:dict];
@@ -27,29 +26,37 @@
 
 - (void)updateFromDictionary:(NSDictionary *)dict
 {
-    self.questionID = [dict numberForKey:@"QuestionID"];
-    self.groupID = [dict numberForKey:@"GroupID"];
-    self.mainCategory = [dict stringForKey:@"MainCategory"];
-    self.subCategory = [dict stringForKey:@"SubCategory"];
-    self.question = [dict stringForKey:@"Question"];
-    self.forceComment = [dict numberForKey:@"ForceComment"];
-    self.answerRequired = [dict numberForKey:@"AnswerRequired"];
-    self.imageRequired = [dict numberForKey:@"ImageRequired"];
+    self.recordID = [dict numberForKey:@"record_id"];
+    self.questionID = [dict stringForKey:@"question_id"];
+    //??self.groupID = [dict numberForKey:@"GroupID"];
+    self.type = [dict stringForKey:@"category"];
+    self.mainCategory = [dict stringForKey:@"category"];
+    self.subCategory = [dict stringForKey:@"subcategory"];
+    self.question = [dict stringForKey:@"question"];
+    self.forceComment = [dict numberForKey:@"comment_required"];
+//    self.answerRequired = [dict numberForKey:@"AnswerRequired"];
+    self.imageRequired = [dict numberForKey:@"photo_required"];
+    
+    //?? what about:
+    //record_id
+    //component_id
+    //component_id_field_name
+    
 }
 
 + (NSString *)typeFacility
 {
-    return @"facility";
+    return @"Facility";
 }
 
 + (NSString *)typeTanks
 {
-    return @"tanks";
+    return @"Tanks";
 }
 
 + (NSString *)typeDispensers
 {
-    return @"dispensers";
+    return @"Dispenser";
 }
 
 @end

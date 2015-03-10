@@ -12,8 +12,8 @@
 
 + (Inspection *)updateOrCreateFromDictionary:(NSDictionary *)dict
 {
-    NSNumber *scheduleID = [dict numberForKey:@"ScheduleID"];
-    Inspection *inspection = [Inspection MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"scheduleID == %d", [scheduleID integerValue]]];
+    NSNumber *inspectionID = [dict numberForKey:@"id"];
+    Inspection *inspection = [Inspection MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"inspectionID == %d", [inspectionID integerValue]]];
     if(!inspection)
         inspection = [Inspection MR_createEntity];
     
@@ -25,17 +25,18 @@
 {
     self.user = [User loggedInUser];
     
-    self.scheduleID = [dict numberForKey:@"ScheduleID"];
-    self.inspectionID = [dict numberForKey:@"InspectionID"];
-    self.submitted = [NSNumber numberWithBool:[[dict objectForKey:@"InspectionCompleted"] boolValue]];
+    self.inspectionID = [dict numberForKey:@"id"];
+    self.submitted = @(NO);
+//    if([[dict objectForKey:@"stop"] boolValue])
+//        self.submitted = @(YES);
     
-    NSNumber *facilityID = [dict numberForKey:@"FacilityID"];
+    NSNumber *facilityID = [dict numberForKey:@"facility_id"];
     Facility *facility = [Facility MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"facilityID == %d", [facilityID integerValue]]];
     self.facility = facility;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-    NSString *strDate = [dict objectForKey:@"InspectionDate"];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    NSString *strDate = [dict objectForKey:@"scheduled"];
     self.date = [formatter dateFromString:strDate];
     
 }

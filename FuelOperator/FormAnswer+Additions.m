@@ -41,6 +41,21 @@
     return self.comment;
 }
 
++ (void)updateOrCreateFromDictionary:(NSDictionary *)answerDict andInspection:(Inspection *)inspection
+{
+    NSLog(@"update answer from dict");
+//    NSNumber *recordID = [dict numberForKey:@"record_id"];
+//    FormQuestion *question = [FormQuestion MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"recordID == %d", [recordID integerValue]]];
+//    if(!question)
+//    {
+//        question = [FormQuestion MR_createEntity];
+//        question.inspection = inspection;
+//    }
+//    
+//    [question updateFromDictionary:dict];
+//    return question;
+}
+
 - (void)updateFromDictionary:(NSDictionary *)dict
 {
     if([self.answer integerValue] == kYES)

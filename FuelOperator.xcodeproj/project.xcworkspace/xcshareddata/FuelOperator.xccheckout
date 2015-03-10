@@ -2,35 +2,37 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>C994DC87-483E-443E-B57F-04B0074A2540</string>
 	<key>IDESourceControlProjectName</key>
 	<string>FuelOperator</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>967913EB-C50C-49F4-9BCF-31B713F60BC9</key>
-		<string>ssh://github.com/GaryRobinson/FuelOperator.git</string>
+		<key>D66752AC6A96F92D9DB049C9DEA7E06056E06D62</key>
+		<string>github.com:GaryRobinson/FuelOperator.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>FuelOperator.xcodeproj/project.xcworkspace</string>
+	<string>FuelOperator.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>967913EB-C50C-49F4-9BCF-31B713F60BC9</key>
+		<key>D66752AC6A96F92D9DB049C9DEA7E06056E06D62</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/GaryRobinson/FuelOperator.git</string>
+	<string>github.com:GaryRobinson/FuelOperator.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>967913EB-C50C-49F4-9BCF-31B713F60BC9</string>
+	<string>D66752AC6A96F92D9DB049C9DEA7E06056E06D62</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>967913EB-C50C-49F4-9BCF-31B713F60BC9</string>
+			<string>D66752AC6A96F92D9DB049C9DEA7E06056E06D62</string>
 			<key>IDESourceControlWCCName</key>
 			<string>FuelOperator</string>
 		</dict>

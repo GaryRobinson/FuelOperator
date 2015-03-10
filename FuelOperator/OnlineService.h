@@ -24,7 +24,7 @@
 - (void)updateInspections;//FromDate:(NSDate *)dateFrom toDate:(NSDate *)dateTo;
 - (void)startInspection:(Inspection *)inspection;
 - (void)getQuestionsForInspection:(Inspection *)inspection;
-- (void)getQuestionsForInspection2:(Inspection *)inspection;
+- (void)getAnswersForInspection:(Inspection *)inspection;
 - (void)getUpdatedAnswers:(NSArray *)answers;
 
 

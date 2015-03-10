@@ -2,8 +2,8 @@
 //  FormQuestion.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 11/25/13.
-//  Copyright (c) 2013 GaryRobinson. All rights reserved.
+//  Created by Gary Robinson on 3/10/15.
+//  Copyright (c) 2015 GaryRobinson. All rights reserved.
 //
 
 #import "FormQuestion.h"
@@ -13,16 +13,17 @@
 
 @implementation FormQuestion
 
+@dynamic answerRequired;
+@dynamic forceComment;
+@dynamic groupID;
+@dynamic imageRequired;
 @dynamic mainCategory;
 @dynamic question;
-@dynamic questionID;
+@dynamic recordID;
 @dynamic sortOrder;
-@dynamic groupID;
 @dynamic subCategory;
-@dynamic forceComment;
-@dynamic answerRequired;
-@dynamic imageRequired;
 @dynamic type;
+@dynamic questionID;
 @dynamic formAnswer;
 @dynamic inspection;
 

@@ -23,6 +23,7 @@ PODS:
   - MagicalRecord (2.1):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.1)
+  - NewRelicAgent (4.186)
   - SAMAddressBar (0.1.0)
   - SAMBadgeView (0.1.1)
   - SAMCategories (0.5.2)
@@ -53,12 +54,14 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.4.1)
   - MagicalRecord (~> 2.1)
+  - NewRelicAgent
   - SSToolkit (~> 2.0.0)
   - SVProgressHUD (~> 0.9)
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   MagicalRecord: 5db5b3b3d70e62b0c310c57f1294be61fbc7d548
+  NewRelicAgent: 3ad10d9fe34dc0bffa1f2a1d50793d607b62823a
   SAMAddressBar: 5880d7cc6fea49e7371b8183924b59cdd14b82fe
   SAMBadgeView: 56c54bb74bb0af743de1cc788aaacd38b31030af
   SAMCategories: dc26f9dc67d371d22f391ee2173bc607a887912e

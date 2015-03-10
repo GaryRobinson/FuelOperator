@@ -14,6 +14,8 @@
     #import <CoreData/CoreData.h>
     #import <QuartzCore/QuartzCore.h>
 
+    #import <NewRelicAgent/NewRelic.h>
+
     #import "UIColor+Additions.h"
     #import "UIFont+Additions.h"
     #import "UIImage+Additions.h"

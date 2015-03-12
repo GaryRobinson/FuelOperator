@@ -121,6 +121,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[InspectionFormViewController questionsUpdated:]:InspectionFormViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "tanksQuestions[0].inspection">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__34-[OnlineService processNextAnswer]_block_invoke_2:OnlineService.m">
          <PersistentStrings>
             <PersistentString

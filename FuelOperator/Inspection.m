@@ -2,8 +2,8 @@
 //  Inspection.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 1/5/14.
-//  Copyright (c) 2014 GaryRobinson. All rights reserved.
+//  Created by Gary Robinson on 3/13/15.
+//  Copyright (c) 2015 GaryRobinson. All rights reserved.
 //
 
 #import "Inspection.h"
@@ -21,6 +21,7 @@
 @dynamic scheduleID;
 @dynamic submitted;
 @dynamic totalTime;
+@dynamic status;
 @dynamic facility;
 @dynamic formAnswers;
 @dynamic formQuestions;

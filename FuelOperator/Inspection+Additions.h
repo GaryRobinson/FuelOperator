@@ -13,4 +13,9 @@
 + (Inspection *)updateOrCreateFromDictionary:(NSDictionary *)dict;
 - (void)updateFromDictionary:(NSDictionary *)dict;
 
++ (NSString *)statusScheduled;
++ (NSString *)statusStarted;
++ (NSString *)statusInProgress;
++ (NSString *)statusClosed;
+
 @end

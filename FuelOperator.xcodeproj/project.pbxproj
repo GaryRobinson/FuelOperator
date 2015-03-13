@@ -14,7 +14,6 @@
 		3C1B6D7816F518A1007CD5F4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1B6D7716F518A1007CD5F4 /* MapKit.framework */; };
 		3C1B6D7D16F53A41007CD5F4 /* InspectionFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */; };
 		3C1B80FF182D555E00BC3D02 /* SettingsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */; };
-		3C1F1D891879C8970093AB3F /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1F1D881879C8970093AB3F /* Inspection.m */; };
 		3C2610971721C1E8007589C1 /* InspectionsFormCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C2610961721C1E8007589C1 /* InspectionsFormCell.m */; };
 		3C27781217108C9D000E4749 /* AccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C27781117108C9D000E4749 /* AccessoryView.m */; };
 		3C29B25D172C6BDA00380A96 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C29B25C172C6BD900380A96 /* CoreLocation.framework */; };
@@ -59,6 +58,7 @@
 		3CD3E89C1734383E004C0EA5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD3E89B1734383E004C0EA5 /* Icon.png */; };
 		3CDE79D91AAB8CE000A38BD6 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDE79D81AAB8CE000A38BD6 /* HttpManager.m */; };
 		3CDF67501AB2B7F20094DD69 /* Facility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF674F1AB2B7F20094DD69 /* Facility.m */; };
+		3CDF67561AB2C53F0094DD69 /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF67551AB2C53F0094DD69 /* Inspection.m */; };
 		3CDFA01818411F82009C839A /* Facility+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA01718411F82009C839A /* Facility+Additions.m */; };
 		3CDFA01B18412038009C839A /* NSDictionary+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA01A18412038009C839A /* NSDictionary+Additions.m */; };
 		3CDFA0211841417E009C839A /* Inspection+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA0201841417E009C839A /* Inspection+Additions.m */; };
@@ -91,8 +91,6 @@
 		3C1B6D7C16F53A41007CD5F4 /* InspectionFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionFormViewController.m; sourceTree = "<group>"; };
 		3C1B80FD182D555E00BC3D02 /* SettingsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsDetailViewController.h; sourceTree = "<group>"; };
 		3C1B80FE182D555E00BC3D02 /* SettingsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsDetailViewController.m; sourceTree = "<group>"; };
-		3C1F1D871879C8970093AB3F /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
-		3C1F1D881879C8970093AB3F /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
 		3C2610951721C1E7007589C1 /* InspectionsFormCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionsFormCell.h; sourceTree = "<group>"; };
 		3C2610961721C1E8007589C1 /* InspectionsFormCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionsFormCell.m; sourceTree = "<group>"; };
 		3C27781017108C9D000E4749 /* AccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessoryView.h; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 		3C29B26B172C8EE500380A96 /* MapAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapAnnotationView.h; sourceTree = "<group>"; };
 		3C29B26C172C8EE500380A96 /* MapAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapAnnotationView.m; sourceTree = "<group>"; };
 		3C3AC47216FF2C2A003CA498 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
-		3C3AC47316FF2C2A003CA498 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = ../TestFlight.h; sourceTree = "<group>"; };
 		3C3AC47516FF2C6E003CA498 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3C3D0C241820D4E3002F6536 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		3C3D0C251820D4E3002F6536 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
@@ -166,6 +163,8 @@
 		3CDE79D81AAB8CE000A38BD6 /* HttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManager.m; sourceTree = "<group>"; };
 		3CDF674E1AB2B7F20094DD69 /* Facility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facility.h; sourceTree = "<group>"; };
 		3CDF674F1AB2B7F20094DD69 /* Facility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facility.m; sourceTree = "<group>"; };
+		3CDF67541AB2C53F0094DD69 /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
+		3CDF67551AB2C53F0094DD69 /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
 		3CDFA01618411F82009C839A /* Facility+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Facility+Additions.h"; sourceTree = "<group>"; };
 		3CDFA01718411F82009C839A /* Facility+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Facility+Additions.m"; sourceTree = "<group>"; };
 		3CDFA01918412038009C839A /* NSDictionary+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Additions.h"; sourceTree = "<group>"; };
@@ -280,7 +279,6 @@
 		3C78335316DDD5E70037ED08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3C3AC47316FF2C2A003CA498 /* TestFlight.h */,
 				3C78335416DDD5E70037ED08 /* FuelOperator-Info.plist */,
 				3C78335516DDD5E70037ED08 /* InfoPlist.strings */,
 				3C78335816DDD5E70037ED08 /* main.m */,
@@ -350,8 +348,8 @@
 				3C73B0481AAFB46400B3FF44 /* FormQuestion.h */,
 				3C73B0491AAFB46400B3FF44 /* FormQuestion.m */,
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
-				3C1F1D871879C8970093AB3F /* Inspection.h */,
-				3C1F1D881879C8970093AB3F /* Inspection.m */,
+				3CDF67541AB2C53F0094DD69 /* Inspection.h */,
+				3CDF67551AB2C53F0094DD69 /* Inspection.m */,
 				3CBC0EE5184AAAAD009C3820 /* FormAnswer.h */,
 				3CBC0EE6184AAAAD009C3820 /* FormAnswer.m */,
 				3CBC0EDC1848D9A2009C3820 /* Photo.h */,
@@ -615,13 +613,13 @@
 				3C0BA2AC17500E800043D256 /* RootContainerViewController.m in Sources */,
 				3CFBA4D0175946BC00F47978 /* NSDate+Additions.m in Sources */,
 				3C063F8A17CDC4D600BAF3FE /* FormCategoryView.m in Sources */,
-				3C1F1D891879C8970093AB3F /* Inspection.m in Sources */,
 				3CDFA0211841417E009C839A /* Inspection+Additions.m in Sources */,
 				3CBC0EE1184A7777009C3820 /* SignatureViewController.m in Sources */,
 				3C3D0C261820D4E3002F6536 /* NSString+Additions.m in Sources */,
 				3CDFA01B18412038009C839A /* NSDictionary+Additions.m in Sources */,
 				3C063FB117CDE6F600BAF3FE /* FormAnswer+Additions.m in Sources */,
 				3CDFA03918415FBD009C839A /* RequiredTypes.m in Sources */,
+				3CDF67561AB2C53F0094DD69 /* Inspection.m in Sources */,
 				3CEE6BA6181B001400C6E43C /* UIViewController+Additions.m in Sources */,
 				3C1B80FF182D555E00BC3D02 /* SettingsDetailViewController.m in Sources */,
 			);
@@ -705,6 +703,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FuelOperator/FuelOperator-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"MR_ENABLE_ACTIVE_RECORD_LOGGING=0",
+				);
 				INFOPLIST_FILE = "FuelOperator/FuelOperator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -727,6 +730,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Fuel Operator, L.L.C.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FuelOperator/FuelOperator-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"MR_ENABLE_ACTIVE_RECORD_LOGGING=0",
+				);
 				INFOPLIST_FILE = "FuelOperator/FuelOperator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LIBRARY_SEARCH_PATHS = (

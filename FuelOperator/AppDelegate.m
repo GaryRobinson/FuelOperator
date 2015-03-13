@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 
+#define DATA_MODEL_VERSION @"1.0"
 
 
 @interface AppDelegate ()
@@ -26,7 +27,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    [MagicalRecord setupCoreDataStackWithStoreNamed:@"FuelOperator.sqllite"];
+    [self initMagicalRecord];
     
     //background fetch every 12 hours
     [application setMinimumBackgroundFetchInterval:[NSDate secondsPerDay]/2];
@@ -37,6 +38,50 @@
     //[self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void)initMagicalRecord
+{
+    // if a number I define or the build number changes, delete the core data db
+    
+    NSString *storeFileName = @"FuelOperator.sqllite";
+    NSString *dataModelKey = @"OrcaDataModelVersion";
+    NSString *buildNumberKey = @"BuildNumber";
+    NSString *prevDataModelVersion = [[NSUserDefaults standardUserDefaults] objectForKey:dataModelKey];
+    NSString *prevBuildNumber = [[NSUserDefaults standardUserDefaults] objectForKey:buildNumberKey];
+    NSString *curBuildNumber = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+    if(!prevDataModelVersion || ![prevDataModelVersion isEqualToString:DATA_MODEL_VERSION] ||
+       !prevBuildNumber || ![prevBuildNumber isEqualToString:curBuildNumber])
+    {
+        //if this data model version is higher than the one that we store in NSUserDefaults
+        //we need to "migrate" the database by clearing its data and re-syncing with the api
+        NSURL *docsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        
+        NSError *error;
+        NSURL *dbURL = [docsURL URLByAppendingPathComponent:storeFileName];
+        if([[NSFileManager defaultManager] fileExistsAtPath:[dbURL path]])
+            [[NSFileManager defaultManager] removeItemAtURL:dbURL error:&error];
+        
+        NSString *walName = [storeFileName stringByAppendingString:@"-wal"];
+        NSURL *walURL = [docsURL URLByAppendingPathComponent:walName];
+        if([[NSFileManager defaultManager] fileExistsAtPath:[walURL path]])
+            [[NSFileManager defaultManager] removeItemAtURL:walURL error:&error];
+        
+        NSString *shmName = [storeFileName stringByAppendingString:@"-shm"];
+        NSURL *shmURL = [docsURL URLByAppendingPathComponent:shmName];
+        if([[NSFileManager defaultManager] fileExistsAtPath:[shmURL path]])
+            [[NSFileManager defaultManager] removeItemAtURL:shmURL error:&error];
+        
+        //so, we'll need to delete the sync tokens as well
+        //[SyncViewModel clearSyncTokens];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:DATA_MODEL_VERSION forKey:dataModelKey];
+    [[NSUserDefaults standardUserDefaults] setObject:curBuildNumber forKey:buildNumberKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [MagicalRecord setupCoreDataStackWithStoreNamed:storeFileName];
+    
 }
 
 - (void)setupLoginScreen

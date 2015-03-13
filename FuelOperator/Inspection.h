@@ -2,8 +2,8 @@
 //  Inspection.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 1/5/14.
-//  Copyright (c) 2014 GaryRobinson. All rights reserved.
+//  Created by Gary Robinson on 3/13/15.
+//  Copyright (c) 2015 GaryRobinson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSNumber * scheduleID;
 @property (nonatomic, retain) NSNumber * submitted;
 @property (nonatomic, retain) NSNumber * totalTime;
+@property (nonatomic, retain) NSString * status;
 @property (nonatomic, retain) Facility *facility;
 @property (nonatomic, retain) NSSet *formAnswers;
 @property (nonatomic, retain) NSSet *formQuestions;

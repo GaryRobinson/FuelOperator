@@ -14,6 +14,9 @@
     #import <CoreData/CoreData.h>
     #import <QuartzCore/QuartzCore.h>
 
+
+    #import <MagicalRecord/CoreData+MagicalRecord.h>
+    #import <MagicalRecord/MagicalRecord.h>
     #import <NewRelicAgent/NewRelic.h>
 
     #import "UIColor+Additions.h"

@@ -26,7 +26,11 @@
     self.user = [User loggedInUser];
     
     self.inspectionID = [dict numberForKey:@"id"];
-    self.submitted = @(NO);
+    self.status = [dict stringForKey:@"status"];
+    if([self.status isEqualToString:[Inspection statusClosed]])
+        self.submitted = @(YES);
+    else
+        self.submitted = @(NO);
 //    if([[dict objectForKey:@"stop"] boolValue])
 //        self.submitted = @(YES);
     
@@ -39,6 +43,23 @@
     NSString *strDate = [dict objectForKey:@"scheduled"];
     self.date = [formatter dateFromString:strDate];
     
+}
+
++ (NSString *)statusScheduled
+{
+    return @"Scheduled";
+}
++ (NSString *)statusStarted
+{
+    return @"Started";
+}
++ (NSString *)statusInProgress
+{
+    return @"In Process";
+}
++ (NSString *)statusClosed
+{
+    return @"Closed";
 }
 
 @end

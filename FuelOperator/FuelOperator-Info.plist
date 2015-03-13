@@ -53,7 +53,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>testFlightAppToken</key>
-	<string>43e79f16-8771-4aaf-8797-fb338175a70d</string>
 </dict>
 </plist>

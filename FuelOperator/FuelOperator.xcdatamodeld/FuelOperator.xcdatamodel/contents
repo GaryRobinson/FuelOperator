@@ -4,6 +4,7 @@
         <attribute name="address1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="facilityID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="lattitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -65,7 +66,7 @@
         <relationship name="inspections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Inspection" inverseName="user" inverseEntity="Inspection" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Facility" positionX="-747" positionY="-292" width="128" height="193"/>
+        <element name="Facility" positionX="-747" positionY="-292" width="128" height="208"/>
         <element name="FormAnswer" positionX="-506" positionY="-279" width="128" height="148"/>
         <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="238"/>
         <element name="Inspection" positionX="-756" positionY="-58" width="128" height="193"/>

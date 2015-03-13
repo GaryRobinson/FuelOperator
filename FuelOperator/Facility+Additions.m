@@ -31,6 +31,7 @@
     self.city = [dict stringForKey:@"city"];
     self.state = [dict stringForKey:@"state"];
     self.zip = [dict stringForKey:@"postal_code"];
+    self.company = [dict stringForKey:@"company"];
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;

@@ -63,6 +63,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (UILabel*)appTitle
 {
     if(_appTitle == nil)

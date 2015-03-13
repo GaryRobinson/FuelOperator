@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "TestFlight.h"
 
 
 
@@ -21,9 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [TestFlight takeOff:@"43e79f16-8771-4aaf-8797-fb338175a70d"];
     
-    [NewRelicAgent startWithApplicationToken:@"b569569265e4004cd21a7947e921fbaa2491d71e"];
+    [NewRelicAgent startWithApplicationToken:@"AAbd035cf0253ae2e54c3e0fa9e417ed3e7eb00b02"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

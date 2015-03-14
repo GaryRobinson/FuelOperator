@@ -17,7 +17,9 @@
         <attribute name="answer" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="dateModified" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="recordID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="repairedOnSite" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="formQuestion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="formAnswer" inverseEntity="FormQuestion" syncable="YES"/>
         <relationship name="inspection" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Inspection" inverseName="formAnswers" inverseEntity="Inspection" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="formAnswer" inverseEntity="Photo" syncable="YES"/>
@@ -39,6 +41,7 @@
     </entity>
     <entity name="Inspection" representedClassName="Inspection" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="facilityID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="inspectionID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="scheduleID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -68,9 +71,9 @@
     </entity>
     <elements>
         <element name="Facility" positionX="-747" positionY="-292" width="128" height="208"/>
-        <element name="FormAnswer" positionX="-506" positionY="-279" width="128" height="148"/>
+        <element name="FormAnswer" positionX="-506" positionY="-324" width="128" height="178"/>
         <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="238"/>
-        <element name="Inspection" positionX="-756" positionY="-58" width="128" height="208"/>
+        <element name="Inspection" positionX="-756" positionY="-58" width="128" height="223"/>
         <element name="Photo" positionX="-335" positionY="-270" width="128" height="103"/>
         <element name="RequiredTypes" positionX="-351" positionY="-63" width="128" height="88"/>
         <element name="User" positionX="-927" positionY="-36" width="128" height="88"/>

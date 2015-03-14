@@ -35,8 +35,18 @@
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
-    self.lattitude = [f numberFromString:[dict stringForKey:@"latitude"]];
-    self.longitude = [f numberFromString:[dict stringForKey:@"longitude"]];
+    id latitude = dict[@"latitude"];
+    if([latitude isKindOfClass:[NSString class]])
+        self.lattitude = [f numberFromString:latitude];
+    else
+        self.lattitude = latitude;
+    
+    id longitude = dict[@"longitude"];
+    if([longitude isKindOfClass:[NSString class]])
+        self.longitude = [f numberFromString:longitude];
+    else
+        self.longitude = longitude;
+    
 }
 
 @end

@@ -58,7 +58,7 @@
 		3CD3E89C1734383E004C0EA5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD3E89B1734383E004C0EA5 /* Icon.png */; };
 		3CDE79D91AAB8CE000A38BD6 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDE79D81AAB8CE000A38BD6 /* HttpManager.m */; };
 		3CDF67501AB2B7F20094DD69 /* Facility.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF674F1AB2B7F20094DD69 /* Facility.m */; };
-		3CDF67561AB2C53F0094DD69 /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF67551AB2C53F0094DD69 /* Inspection.m */; };
+		3CDF675A1AB398CB0094DD69 /* Inspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF67591AB398CB0094DD69 /* Inspection.m */; };
 		3CDFA01818411F82009C839A /* Facility+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA01718411F82009C839A /* Facility+Additions.m */; };
 		3CDFA01B18412038009C839A /* NSDictionary+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA01A18412038009C839A /* NSDictionary+Additions.m */; };
 		3CDFA0211841417E009C839A /* Inspection+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDFA0201841417E009C839A /* Inspection+Additions.m */; };
@@ -163,8 +163,8 @@
 		3CDE79D81AAB8CE000A38BD6 /* HttpManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpManager.m; sourceTree = "<group>"; };
 		3CDF674E1AB2B7F20094DD69 /* Facility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facility.h; sourceTree = "<group>"; };
 		3CDF674F1AB2B7F20094DD69 /* Facility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Facility.m; sourceTree = "<group>"; };
-		3CDF67541AB2C53F0094DD69 /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
-		3CDF67551AB2C53F0094DD69 /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
+		3CDF67581AB398CB0094DD69 /* Inspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Inspection.h; sourceTree = "<group>"; };
+		3CDF67591AB398CB0094DD69 /* Inspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Inspection.m; sourceTree = "<group>"; };
 		3CDFA01618411F82009C839A /* Facility+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Facility+Additions.h"; sourceTree = "<group>"; };
 		3CDFA01718411F82009C839A /* Facility+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Facility+Additions.m"; sourceTree = "<group>"; };
 		3CDFA01918412038009C839A /* NSDictionary+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Additions.h"; sourceTree = "<group>"; };
@@ -347,9 +347,9 @@
 				3CDF674F1AB2B7F20094DD69 /* Facility.m */,
 				3C73B0481AAFB46400B3FF44 /* FormQuestion.h */,
 				3C73B0491AAFB46400B3FF44 /* FormQuestion.m */,
+				3CDF67581AB398CB0094DD69 /* Inspection.h */,
+				3CDF67591AB398CB0094DD69 /* Inspection.m */,
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
-				3CDF67541AB2C53F0094DD69 /* Inspection.h */,
-				3CDF67551AB2C53F0094DD69 /* Inspection.m */,
 				3CBC0EE5184AAAAD009C3820 /* FormAnswer.h */,
 				3CBC0EE6184AAAAD009C3820 /* FormAnswer.m */,
 				3CBC0EDC1848D9A2009C3820 /* Photo.h */,
@@ -619,7 +619,7 @@
 				3CDFA01B18412038009C839A /* NSDictionary+Additions.m in Sources */,
 				3C063FB117CDE6F600BAF3FE /* FormAnswer+Additions.m in Sources */,
 				3CDFA03918415FBD009C839A /* RequiredTypes.m in Sources */,
-				3CDF67561AB2C53F0094DD69 /* Inspection.m in Sources */,
+				3CDF675A1AB398CB0094DD69 /* Inspection.m in Sources */,
 				3CEE6BA6181B001400C6E43C /* UIViewController+Additions.m in Sources */,
 				3C1B80FF182D555E00BC3D02 /* SettingsDetailViewController.m in Sources */,
 			);

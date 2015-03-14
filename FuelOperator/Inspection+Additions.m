@@ -34,8 +34,8 @@
 //    if([[dict objectForKey:@"stop"] boolValue])
 //        self.submitted = @(YES);
     
-    NSNumber *facilityID = [dict numberForKey:@"facility_id"];
-    Facility *facility = [Facility MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"facilityID == %d", [facilityID integerValue]]];
+    self.facilityID = [dict numberForKey:@"facility_id"];
+    Facility *facility = [Facility MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"facilityID == %d", [self.facilityID intValue]]];
     self.facility = facility;
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

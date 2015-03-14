@@ -41,49 +41,41 @@
     return self.comment;
 }
 
-+ (void)updateOrCreateFromDictionary:(NSDictionary *)answerDict andInspection:(Inspection *)inspection
++ (FormAnswer *)updateOrCreateFromDictionary:(NSDictionary *)answerDict andInspection:(Inspection *)inspection
 {
     NSLog(@"update answer from dict");
-//    NSNumber *recordID = [dict numberForKey:@"record_id"];
-//    FormQuestion *question = [FormQuestion MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"recordID == %d", [recordID integerValue]]];
-//    if(!question)
-//    {
-//        question = [FormQuestion MR_createEntity];
-//        question.inspection = inspection;
-//    }
-//    
-//    [question updateFromDictionary:dict];
-//    return question;
+    
+    NSNumber *recordID = [answerDict numberForKey:@"record_id"];
+    FormAnswer *answer = [FormAnswer MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"recordID == %d", [recordID integerValue]]];
+    if(!answer)
+    {
+        answer = [FormAnswer MR_createEntity];
+        answer.inspection = inspection;
+    }
+    
+    [answer updateFromDictionary:answerDict];
+    return answer;
 }
 
 - (void)updateFromDictionary:(NSDictionary *)dict
 {
-    if([self.answer integerValue] == kYES)
-        NSLog(@"");
+    self.recordID = [dict numberForKey:@"record_id"];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS"];
-    NSString *strDate = [dict objectForKey:@"LastUpdated"];
-    NSDate *date = [formatter dateFromString:strDate];
+    self.answer = [dict numberForKey:@"answer"];
+    //no is probably 0, I need to change it to my enum
+    if([self.answer intValue] == 0)
+        self.answer = @(kNO);
     
-    //check the updated date first to see if it is newer
-    if(!date)
-        return;
-    NSComparisonResult result = [self.dateModified compare:date];
-    if(self.dateModified && (result == NSOrderedDescending))
-        return;
-    
-    self.dateModified = date;
+    self.type = [dict stringForKey:@"answer_type"];
     self.comment = [dict stringForKey:@"Comments"];
     
-    NSString *answer = [dict stringForKey:@"Answer"];
-    if([answer isEqualToString:@"T"])
-        self.answer = [NSNumber numberWithInt:kYES];
-    else if([answer isEqualToString:@"F"])
-        self.answer = [NSNumber numberWithInt:kNO];
-    else
-        self.answer = [NSNumber numberWithInt:kUnanswered];
+    //?? link it to a question
+    
+    self.repairedOnSite = @(NO);
+    if(dict[@"repaired_on_site"] && dict[@"repaired_on_site"] != [NSNull null])
+        self.repairedOnSite = @([dict[@"repaired_on_site"] boolValue]);
+    
+    
     
 }
 

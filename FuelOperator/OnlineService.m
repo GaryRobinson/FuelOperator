@@ -49,7 +49,8 @@ static OnlineService *sharedOnlineService = nil;
 - (void)attemptLogin:(NSString *)username password:(NSString *)password baseURL:(NSString *)baseURL
 {
     //?? for now, just let me login hard-coded
-    [self updateFacilities];
+//    [self updateFacilities];
+    [self loginDone:YES tryOffline:NO];
     
     
 //    if(baseURL == nil)
@@ -195,6 +196,8 @@ static OnlineService *sharedOnlineService = nil;
      }];
 }
 
+
+
 - (void)processNextInspection
 {
     if(self.processingInspections.count == 0)
@@ -210,11 +213,45 @@ static OnlineService *sharedOnlineService = nil;
     
     Inspection *inspection = [self.processingInspections objectAtIndex:0];
     {
-        if([inspection.inspectionID integerValue] == 0)
-            [self startInspection:inspection];
-        else
-            [self getQuestionsForInspection:inspection];
+        //?? hmm, can I batch these requests?
+        [self getFacilityForInspection:inspection];
     }
+}
+
+- (void)getFacilityForInspection:(Inspection *)inspection
+{
+    //hit the endpoint, make the facility, connect the inspection to it
+    NSString *path = [NSString stringWithFormat:@"facilities/%d", [inspection.facilityID intValue]];
+    [[HttpManager manager] GET:path parameters:nil
+                       success:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         //?? change this to save the facility
+         
+         NSDictionary *result = responseObject;
+         Facility *f = [Facility updateOrCreateFromDictionary:result];
+         inspection.facility = f;
+ 
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         
+         //success block
+         if([inspection.inspectionID integerValue] == 0)
+             [self startInspection:inspection];
+         else
+             [self getQuestionsForInspection:inspection];
+         
+     }
+                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"failed get facility for inspection %d", [inspection.inspectionID intValue]);
+         
+         if(self.processingInspections.count > 0)
+             [self.processingInspections removeObjectAtIndex:0];
+         [self processNextInspection];
+     }
+     ];
+    
+    
+    
 }
 
 - (void)startInspection:(Inspection *)inspection

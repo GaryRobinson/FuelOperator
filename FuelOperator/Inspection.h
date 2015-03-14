@@ -17,9 +17,10 @@
 @property (nonatomic, retain) NSNumber * inspectionID;
 @property (nonatomic, retain) NSNumber * progress;
 @property (nonatomic, retain) NSNumber * scheduleID;
+@property (nonatomic, retain) NSString * status;
 @property (nonatomic, retain) NSNumber * submitted;
 @property (nonatomic, retain) NSNumber * totalTime;
-@property (nonatomic, retain) NSString * status;
+@property (nonatomic, retain) NSNumber * facilityID;
 @property (nonatomic, retain) Facility *facility;
 @property (nonatomic, retain) NSSet *formAnswers;
 @property (nonatomic, retain) NSSet *formQuestions;

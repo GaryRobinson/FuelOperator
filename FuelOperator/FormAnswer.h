@@ -2,8 +2,8 @@
 //  FormAnswer.h
 //  FuelOperator
 //
-//  Created by Gary Robinson on 11/30/13.
-//  Copyright (c) 2013 GaryRobinson. All rights reserved.
+//  Created by Gary Robinson on 3/14/15.
+//  Copyright (c) 2015 GaryRobinson. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,6 +17,8 @@
 @property (nonatomic, retain) NSString * comment;
 @property (nonatomic, retain) NSDate * dateModified;
 @property (nonatomic, retain) NSNumber * repairedOnSite;
+@property (nonatomic, retain) NSString * type;
+@property (nonatomic, retain) NSNumber * recordID;
 @property (nonatomic, retain) FormQuestion *formQuestion;
 @property (nonatomic, retain) Inspection *inspection;
 @property (nonatomic, retain) NSSet *photos;

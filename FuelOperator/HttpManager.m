@@ -74,7 +74,10 @@ static HttpManager *sharedInstance = nil;
     if([responseObject isKindOfClass:[NSDictionary class]])
     {
         NSDictionary *dictionary = responseObject;
-        return dictionary[@"results"];
+        if(dictionary[@"results"])
+            return dictionary[@"results"];
+        else
+            return dictionary;
     }
     else if([responseObject isKindOfClass:[NSArray class]])
         return responseObject;

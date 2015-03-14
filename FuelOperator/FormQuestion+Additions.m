@@ -41,7 +41,7 @@
     //record_id
     //component_id
     //component_id_field_name
-    NSLog(@"saved question recordID=%d, inspectionID=%d", [self.recordID intValue], [self.inspection.inspectionID intValue]);
+//    NSLog(@"saved question recordID=%d, inspectionID=%d", [self.recordID intValue], [self.inspection.inspectionID intValue]);
 }
 
 + (NSString *)typeFacility

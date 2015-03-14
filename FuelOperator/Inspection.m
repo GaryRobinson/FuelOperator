@@ -19,9 +19,10 @@
 @dynamic inspectionID;
 @dynamic progress;
 @dynamic scheduleID;
+@dynamic status;
 @dynamic submitted;
 @dynamic totalTime;
-@dynamic status;
+@dynamic facilityID;
 @dynamic facility;
 @dynamic formAnswers;
 @dynamic formQuestions;

@@ -2,8 +2,8 @@
 //  FormAnswer.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 11/30/13.
-//  Copyright (c) 2013 GaryRobinson. All rights reserved.
+//  Created by Gary Robinson on 3/14/15.
+//  Copyright (c) 2015 GaryRobinson. All rights reserved.
 //
 
 #import "FormAnswer.h"
@@ -18,6 +18,8 @@
 @dynamic comment;
 @dynamic dateModified;
 @dynamic repairedOnSite;
+@dynamic type;
+@dynamic recordID;
 @dynamic formQuestion;
 @dynamic inspection;
 @dynamic photos;

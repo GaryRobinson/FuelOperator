@@ -10,6 +10,7 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "HttpManager.h"
+#import "FormAnswer+Additions.h"
 
 #define DEFAULT_NUM_WEEKS 4
 
@@ -399,42 +400,45 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)postNextAnswer
 {
-//    if(self.pauseSubmit)
-//        return;
-//    
-//    FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
-//    
-//    NSString *path = [NSString stringWithFormat:@"api/question/saveanswer"];
-//    
-//    NSDictionary *params = @{@"InspectionID" : self.postingInspection.inspectionID,
-//                             @"QuestionID" : question.questionID,
-//                             @"Answer" : [question.formAnswer answerText],
-//                             @"Comments" : [question.formAnswer commentText] };
-//    
-//    NSError *error;
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
-//    NSMutableData *body = [NSMutableData data];
-//    [body appendData:jsonData];
-//    
-//    
-//    NSMutableURLRequest *request = [[HttpManager manager] requestWithMethod:@"POST" path:path parameters:nil/*params*/];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [request setHTTPBody:body];
-//    
-//    [[HttpManager manager] registerHTTPOperationClass:[AFHTTPRequestOperation class]];
-//
-//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-//    {
+    if(self.pauseSubmit)
+        return;
+    
+    FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
+    
+    NSString *post = [NSString stringWithFormat:@"inspections/%d/questions/%d",
+                      [self.postingInspection.inspectionID intValue],
+                      [question.recordID intValue]];
+    
+    NSNumber *answer = @(NO);
+    if([question.formAnswer.answer intValue] == 1)
+        answer = @(YES);
+    
+    NSString *comment = @"";
+    if(question.formAnswer.comment)
+        comment = question.formAnswer.comment;
+    
+    NSDictionary *params = @{@"question_id" : question.questionID,
+                             @"question" : question.question,
+                             @"record_id" : question.recordID,
+                             @"answer" : answer,
+                             @"answer_type" : @"Yes/No",// question.formAnswer.type,
+                             @"repaired_on_site" : question.formAnswer.repairedOnSite,
+                             @"comment" : comment,
+                             @"component_id" : @"None"};
+    
+    [[HttpManager manager] POST:post parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+//        //?? ignore attachments for now
 //        [self saveDeficiency];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"failed post answer to questionID: %d", [question.questionID intValue]);
-//        [self answerDone];
-//    }];
-//    
-//    [operation start];
+        [self answerDone];
+        
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [self answerDone];
+    }];
+    
+    
+    
 }
 
 - (void)saveDeficiency
@@ -546,6 +550,26 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)closeInspection
 {
+    //?? still do the signature?
+    
+    NSString *post = [NSString stringWithFormat:@"inspections/%d/stop", [self.postingInspection.inspectionID intValue]];
+    [[HttpManager manager] PUT:post parameters:nil success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        self.postingInspection.submitted = [NSNumber numberWithBool:YES];
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        self.postingInspection = nil;
+         [SVProgressHUD dismiss];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
+        
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        self.postingInspection.submitted = [NSNumber numberWithBool:NO];
+         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        self.postingInspection = nil;
+         [SVProgressHUD showImage:nil status:@"Failed to submit inspection"];
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
+    }];
+    
 //    int minutes = (int)(([self.postingInspection.totalTime floatValue] / 60.0) + 0.5);
 //    
 //    NSString *path = [NSString stringWithFormat:@"api/inspection/close/%d/%d/%d", [self.postingInspection.inspectionID integerValue], [self.postingInspection.facility.facilityID integerValue], minutes];

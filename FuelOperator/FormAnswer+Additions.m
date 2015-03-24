@@ -70,6 +70,8 @@
     self.comment = [dict stringForKey:@"Comments"];
     
     //?? link it to a question
+    FormQuestion *question = [FormQuestion MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"recordID == %d", [self.recordID integerValue]]];
+    self.formQuestion = question;
     
     self.repairedOnSite = @(NO);
     if(dict[@"repaired_on_site"] && dict[@"repaired_on_site"] != [NSNull null])

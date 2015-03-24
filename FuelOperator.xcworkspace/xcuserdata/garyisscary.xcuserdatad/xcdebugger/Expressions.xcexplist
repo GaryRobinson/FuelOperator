@@ -137,6 +137,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[InspectionFormViewController dispensersButtonTapped:]:InspectionFormViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[OnlineService postNextAnswer]:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "question.formAnswer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "__34-[OnlineService processNextAnswer]_block_invoke_2:OnlineService.m">
          <PersistentStrings>
             <PersistentString
@@ -157,6 +168,9 @@
                value = "error">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[FormCategoryView setFormQuestions:]:FormCategoryView.m">
       </ContextState>
       <ContextState
          contextName = "-[InspectionFormViewController tableView:heightForRowAtIndexPath:]:InspectionFormViewController.m">

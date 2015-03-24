@@ -250,7 +250,7 @@
         if([a isAnswered])
             numAnswered++;
         else
-            NSLog(@"not answered");
+            NSLog(@"not answered: %@", [a.formQuestion description]);
     }
     float value = (float)(numAnswered) / (float)(allAnswers.count);
     NSLog(@"%d of %d questions answered", numAnswered, allAnswers.count);
@@ -309,7 +309,7 @@
 {
     if(_dispensersView == nil)
     {
-        _dispensersView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT) singleCategory:NO];
+        _dispensersView = [[FormCategoryView alloc] initWithFrame:CGRectMake(0, PROGRESS_HEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - PROGRESS_HEIGHT - BUTTON_HEIGHT) singleCategory:YES];
         
         _dispensersView.formCategoryDelegate = self;
         _dispensersView.inspection = self.inspection;

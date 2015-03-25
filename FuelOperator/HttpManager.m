@@ -36,7 +36,8 @@ static HttpManager *sharedInstance = nil;
     [self.requestSerializer setAuthorizationHeaderFieldWithUsername:@"garyrobinson" password:myToken];
     [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"ACCEPT"];
     
-    self.responseSerializer = [[FOResponseSerializer alloc] init];
+//    self.responseSerializer = [[FOResponseSerializer alloc] init];
+    self.responseSerializer = [FOResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     self.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     
     return self;

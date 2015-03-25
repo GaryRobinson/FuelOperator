@@ -552,8 +552,12 @@ static OnlineService *sharedOnlineService = nil;
 {
     //?? still do the signature?
     
+    NSDictionary *params = @{@"scheduled" : [NSNull null],
+                             @"start" : [NSNull null],
+                             @"stop" : [NSNull null]};
+    params = nil;
     NSString *post = [NSString stringWithFormat:@"inspections/%d/stop", [self.postingInspection.inspectionID intValue]];
-    [[HttpManager manager] PUT:post parameters:nil success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[HttpManager manager] PUT:post parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         
         self.postingInspection.submitted = [NSNumber numberWithBool:YES];
          [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];

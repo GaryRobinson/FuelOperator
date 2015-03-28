@@ -203,18 +203,13 @@
         [self.answerButton setImage:[UIImage imageNamed:@"thumbsdown"] forState:UIControlStateNormal];
         self.answerButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"black-noise"]];
         
-        if(_formAnswer.photos.count > 0)
-        {
-            self.commentNeededImageView.hidden = YES;
-            self.warningImageView.hidden = YES;
-            self.warningLabel.hidden = YES;
-        }
-        else
-        {
-            self.commentNeededImageView.hidden = NO;
-            self.warningImageView.hidden = NO;
-            self.warningLabel.hidden = NO;
-        }
+    }
+    
+    if([self.formAnswer needsComment] || [self.formAnswer needsPhoto])
+    {
+        self.commentNeededImageView.hidden = NO;
+        self.warningImageView.hidden = NO;
+        self.warningLabel.hidden = NO;
     }
     
     [self setCellHeight];
@@ -227,7 +222,7 @@
     CGFloat height = self.questionLabel.frame.origin.y + self.questionLabel.frame.size.height + 10;
     if(height < 40)
         height = 40;
-    if(([self.formAnswer.answer integerValue] == kNO) || self.formAnswer.comment || (self.formAnswer.photos.count > 0))
+    if([self.formAnswer needsComment] || [self.formAnswer needsPhoto] || self.formAnswer.photos.count > 0)
         height += 20;
     if(height < INSPECTION_FORM_CELL_HEIGHT)
         height = INSPECTION_FORM_CELL_HEIGHT;
@@ -245,7 +240,7 @@
 	CGFloat height = 10 + labelSize.height + 10;
     if(height < 40)
         height = 40;
-    if(([answer.answer integerValue] == kNO) || answer.comment || (answer.photos.count > 0))
+    if([answer needsComment] || [answer needsPhoto] || answer.photos.count > 0)
         height += 20;
     if(height < INSPECTION_FORM_CELL_HEIGHT)
         height = INSPECTION_FORM_CELL_HEIGHT;

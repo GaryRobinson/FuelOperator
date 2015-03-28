@@ -561,12 +561,12 @@
 
 - (void)takePhotoTapped:(id)sender
 {
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        return;
+//    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+//        return;
     
     //?? add another button for choosing from the library: UIImagePickerControllerSourceTypePhotoLibrary
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+    cameraUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;// UIImagePickerControllerSourceTypeCamera;
     cameraUI.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
     cameraUI.delegate = self;
     cameraUI.allowsEditing = YES;

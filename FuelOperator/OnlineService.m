@@ -405,40 +405,138 @@ static OnlineService *sharedOnlineService = nil;
     
     FormQuestion *question = [[self.postingInspection.formQuestions allObjects] objectAtIndex:self.postAnswerIndex];
     
+    if([question.formAnswer.submittted boolValue])
+    {
+        [self answerDone];
+    }
+    else
+    {
+        NSString *post = [NSString stringWithFormat:@"inspections/%d/questions/%d",
+                          [self.postingInspection.inspectionID intValue],
+                          [question.recordID intValue]];
+        
+        NSNumber *answer = @(NO);
+        if([question.formAnswer.answer intValue] == 1)
+            answer = @(YES);
+        
+        NSString *comment = @"";
+        if(question.formAnswer.comment)
+            comment = question.formAnswer.comment;
+        
+        NSDictionary *params = @{@"question_id" : question.questionID,
+                                 @"question" : question.question,
+                                 @"record_id" : question.recordID,
+                                 @"answer" : answer,
+                                 @"answer_type" : @"Yes/No",// question.formAnswer.type,
+                                 @"repaired_on_site" : question.formAnswer.repairedOnSite,
+                                 @"comment" : comment,
+                                 @"component_id" : @"None"};
+        
+        [[HttpManager manager] POST:post parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [self uploadPhotosForAnswer:question.formAnswer];
+            
+        } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            [self answerDone];
+        }];
+    }
+    
+    
+}
+
+- (void)postAnswer:(FormAnswer *)answer
+{
+    
     NSString *post = [NSString stringWithFormat:@"inspections/%d/questions/%d",
-                      [self.postingInspection.inspectionID intValue],
-                      [question.recordID intValue]];
+                      [answer.inspection.inspectionID intValue],
+                      [answer.formQuestion.recordID intValue]];
     
-    NSNumber *answer = @(NO);
-    if([question.formAnswer.answer intValue] == 1)
-        answer = @(YES);
+    NSNumber *value = @(NO);
+    if([answer.answer intValue] == 1)
+        value = @(YES);
     
-    NSString *comment = @"";
-    if(question.formAnswer.comment)
-        comment = question.formAnswer.comment;
-    
-    NSDictionary *params = @{@"question_id" : question.questionID,
-                             @"question" : question.question,
-                             @"record_id" : question.recordID,
-                             @"answer" : answer,
-                             @"answer_type" : @"Yes/No",// question.formAnswer.type,
-                             @"repaired_on_site" : question.formAnswer.repairedOnSite,
-                             @"comment" : comment,
+    NSDictionary *params = @{@"question_id" : answer.formQuestion.questionID,
+                             @"question" : answer.formQuestion.question,
+                             @"record_id" : answer.formQuestion.recordID,
+                             @"answer" : answer.answer,
+                             @"answer_type" : @"Yes/No",
+                             @"repaired_on_site" : answer.repairedOnSite,
+                             @"comment" : [answer commentText],
                              @"component_id" : @"None"};
     
     [[HttpManager manager] POST:post parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         
-//        //?? ignore attachments for now
-//        [self saveDeficiency];
-        [self answerDone];
+        [self uploadPhotosForAnswer:answer];
         
     } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        [self answerDone];
+        answer.submittted = @(NO);
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     }];
+}
+
+- (void)uploadPhotosForAnswer:(FormAnswer *)answer
+{
+    //?? just 1 photo until i get that working, then try all 3
+    if(answer.photos.count == 0)
+    {
+        answer.submittted = @(YES);
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+        return;
+    }
     
+    NSArray *photos = [answer.photos allObjects];
+    for(Photo *p in photos)
+    {
+        if(![p.uploaded boolValue])
+            [self uploadPhoto:p];
+    }
     
+}
+
+- (void)uploadPhoto:(Photo *)photo
+{
+    NSError *err;
+    NSString *post = [NSString stringWithFormat:@"http://www.fueloperator.com/api/v1/inspections/%d/attachments", [photo.formAnswer.inspection.inspectionID intValue]];
     
+    NSDictionary *params = @{@"type" : @"General",
+                             @"question" : photo.formAnswer.formQuestion.recordID,
+                             @"inspection" : photo.formAnswer.inspection.inspectionID};
+    NSURLRequest *request = [[HttpManager manager].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:post parameters:params
+                                                                          constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                                                              
+                                                                              [formData appendPartWithFileData:photo.jpgData name:@"photo" fileName:@"photofile.png" mimeType:@"image/jpeg"];
+                                                                              
+                                                                          } error:&err];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setResponseSerializer:[HttpManager manager].responseSerializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        photo.uploaded = @(YES);
+        
+        NSArray *photos = [photo.formAnswer.photos allObjects];
+        BOOL done = YES;
+        for(Photo *p in photos)
+        {
+            if([p.uploaded boolValue])
+                done = NO;
+        }
+        if(done)
+        {
+            photo.formAnswer.submittted = @(YES);
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            
+            if(self.postingInspection)
+                [self answerDone];
+        }
+	       
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"");
+    }];
+    [operation start];
 }
 
 - (void)saveDeficiency

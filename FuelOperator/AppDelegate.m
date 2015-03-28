@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 
-#define DATA_MODEL_VERSION @"1.0"
+#define DATA_MODEL_VERSION @"1.1"
 
 
 @interface AppDelegate ()

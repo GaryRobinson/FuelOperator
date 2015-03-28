@@ -2,7 +2,7 @@
 //  FormAnswer.m
 //  FuelOperator
 //
-//  Created by Gary Robinson on 3/14/15.
+//  Created by Gary Robinson on 3/28/15.
 //  Copyright (c) 2015 GaryRobinson. All rights reserved.
 //
 
@@ -17,9 +17,10 @@
 @dynamic answer;
 @dynamic comment;
 @dynamic dateModified;
+@dynamic recordID;
 @dynamic repairedOnSite;
 @dynamic type;
-@dynamic recordID;
+@dynamic submittted;
 @dynamic formQuestion;
 @dynamic inspection;
 @dynamic photos;

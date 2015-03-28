@@ -261,9 +261,18 @@
     if(state > kNO)
         state = kUnanswered;
     answer.answer = [NSNumber numberWithInt:state];
-    [self.formCategoryDelegate updateProgressView];
+    
+    //?? save answer to server
+    if([answer isAnswered])
+    {
+        [[OnlineService sharedService] postAnswer:answer];
+    }
+    else
+        answer.submittted = @(NO);
+    
     
     //show the changes
+    [self.formCategoryDelegate updateProgressView];
     [self.tableView reloadData];
 }
 

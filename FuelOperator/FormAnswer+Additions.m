@@ -14,13 +14,36 @@
 {
     if([self.answer integerValue] == kUnanswered)
         return NO;
-    if([self.answer integerValue] == kYES)
+    
+    if([self needsComment])
+        return NO;
+    
+    if([self needsPhoto])
+        return NO;
+    
+    return YES;
+//    if([self.answer integerValue] == kYES)
+//        return YES;
+//    
+//    if(self.photos.count > 0/* self.comment && ![self.comment isEqualToString:@""]*/)
+//        return YES;
+//    else
+//        return NO;
+}
+
+- (BOOL)needsComment
+{
+    if([self.formQuestion.forceComment boolValue] && [[self commentText] isEqualToString:@""])
         return YES;
     
-    if(self.photos.count > 0/* self.comment && ![self.comment isEqualToString:@""]*/)
+    return NO;
+}
+- (BOOL)needsPhoto
+{
+    if([self.formQuestion.imageRequired boolValue] && self.photos.count <= 0)
         return YES;
-    else
-        return NO;
+    
+    return NO;
 }
 
 - (NSString *)answerText

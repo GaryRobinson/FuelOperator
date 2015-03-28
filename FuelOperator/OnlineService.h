@@ -27,6 +27,7 @@
 - (void)getAnswersForInspection:(Inspection *)inspection;
 - (void)getUpdatedAnswers:(NSArray *)answers;
 
+- (void)postAnswer:(FormAnswer *)answer;
 
 - (void)submitInspection:(Inspection *)inspection withSignatureImage:(UIImage *)image;
 - (void)pauseSubmission;

@@ -498,7 +498,7 @@ static OnlineService *sharedOnlineService = nil;
 - (void)uploadPhoto:(Photo *)photo
 {
     NSError *err;
-    NSString *post = [NSString stringWithFormat:@"http://www.fueloperator.com/api/v1/inspections/%d/attachments", [photo.formAnswer.inspection.inspectionID intValue]];
+    NSString *post = [NSString stringWithFormat:@"%@inspections/%d/attachments", [[HttpManager manager].baseURL absoluteString], [photo.formAnswer.inspection.inspectionID intValue]];
     
     NSDictionary *params = @{@"type" : @"General",
                              @"question" : photo.formAnswer.formQuestion.recordID,
@@ -515,13 +515,17 @@ static OnlineService *sharedOnlineService = nil;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         photo.uploaded = @(YES);
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
         
         NSArray *photos = [photo.formAnswer.photos allObjects];
         BOOL done = YES;
         for(Photo *p in photos)
         {
-            if([p.uploaded boolValue])
+            if(![p.uploaded boolValue])
+            {
                 done = NO;
+                [self uploadPhoto:p];
+            }
         }
         if(done)
         {
@@ -643,7 +647,35 @@ static OnlineService *sharedOnlineService = nil;
     if(self.postAnswerIndex < self.postingInspection.formQuestions.count)
         [self postNextAnswer];
     else
+        [self saveSignatureImage];
+}
+
+- (void)saveSignatureImage
+{
+    NSError *err;
+    NSString *post = [NSString stringWithFormat:@"%@inspections/%d/attachments", [[HttpManager manager].baseURL absoluteString], [self.postingInspection.inspectionID intValue]];
+    
+    NSDictionary *params = @{@"type" : @"Signature",
+                             @"inspection" : self.postingInspection.inspectionID};
+    NSURLRequest *request = [[HttpManager manager].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:post parameters:params
+                                                                          constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                                                              
+                                                                              [formData appendPartWithFileData:UIImageJPEGRepresentation(self.signatureImage, 1.0) name:@"photo" fileName:@"photofile.png" mimeType:@"image/jpeg"];
+                                                                              
+                                                                          } error:&err];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    [operation setResponseSerializer:[HttpManager manager].responseSerializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         [self closeInspection];
+	       
+    } failure: ^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"failed signature image");
+        [self closeInspection];
+    }];
+    [operation start];
 }
 
 - (void)closeInspection
@@ -672,39 +704,6 @@ static OnlineService *sharedOnlineService = nil;
          [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
     }];
     
-//    int minutes = (int)(([self.postingInspection.totalTime floatValue] / 60.0) + 0.5);
-//    
-//    NSString *path = [NSString stringWithFormat:@"api/inspection/close/%d/%d/%d", [self.postingInspection.inspectionID integerValue], [self.postingInspection.facility.facilityID integerValue], minutes];
-//    
-//    NSMutableURLRequest *request;
-//    request = [[HttpManager manager] multipartFormRequestWithMethod:@"POST" path:path parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-//               {
-//                   [formData appendPartWithFileData:UIImageJPEGRepresentation(self.signatureImage, 1.0) name:@"photo" fileName:@"photofile.jpg" mimeType:@"image/jpeg"];
-//               }];
-//    
-//    AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
-//    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-//        NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
-//    }];
-//    
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        self.postingInspection.submitted = [NSNumber numberWithBool:YES];
-//         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-//        self.postingInspection = nil;
-//         [SVProgressHUD dismiss];
-//         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
-//    
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//    
-//        self.postingInspection.submitted = [NSNumber numberWithBool:NO];
-//         [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-//        self.postingInspection = nil;
-//         [SVProgressHUD showImage:nil status:@"Failed to submit inspection"];
-//         [[NSNotificationCenter defaultCenter] postNotificationName:@"inspectionSubmitted" object:nil];
-//     }];
-//    
-//    [operation start];
 }
 
 

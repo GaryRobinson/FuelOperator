@@ -27,6 +27,7 @@
     </entity>
     <entity name="FormQuestion" representedClassName="FormQuestion" syncable="YES">
         <attribute name="answerRequired" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="componentID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="forceComment" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="groupID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="imageRequired" optional="YES" attributeType="Integer 16" syncable="YES"/>
@@ -73,7 +74,7 @@
     <elements>
         <element name="Facility" positionX="-747" positionY="-292" width="128" height="208"/>
         <element name="FormAnswer" positionX="-506" positionY="-324" width="128" height="193"/>
-        <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="238"/>
+        <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="253"/>
         <element name="Inspection" positionX="-756" positionY="-58" width="128" height="223"/>
         <element name="Photo" positionX="-335" positionY="-270" width="128" height="103"/>
         <element name="RequiredTypes" positionX="-351" positionY="-63" width="128" height="88"/>

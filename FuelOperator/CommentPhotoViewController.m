@@ -561,17 +561,49 @@
 
 - (void)takePhotoTapped:(id)sender
 {
-//    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-//        return;
+    //prompt camera or library
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Choose Image Type"
+                                          message: @"Would you like to take a new photo with the camera, or choose an existing photo from your library?"
+                                          preferredStyle:UIAlertControllerStyleAlert];
     
-    //?? add another button for choosing from the library: UIImagePickerControllerSourceTypePhotoLibrary
-    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-    cameraUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;// UIImagePickerControllerSourceTypeCamera;
-    cameraUI.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
-    cameraUI.delegate = self;
-    cameraUI.allowsEditing = YES;
+    UIAlertAction *existingAction = [UIAlertAction
+                                   actionWithTitle:@"Photo Library"
+                                   style:UIAlertActionStyleCancel
+                                   handler:^(UIAlertAction *action)
+                                   {
+                                       UIImagePickerController *libraryUI = [[UIImagePickerController alloc] init];
+                                       libraryUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                       libraryUI.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                                       libraryUI.delegate = self;
+                                       libraryUI.allowsEditing = YES;
+                                       [self presentViewController:libraryUI animated:YES completion:nil];
+                                   }];
     
-    [self presentViewController:cameraUI animated:YES completion:nil];
+    
+    UIAlertAction *newAction = [UIAlertAction
+                               actionWithTitle:@"Use Camera"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction *action)
+                               {
+                                   if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+                                   {
+                                       UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+                                       cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                       cameraUI.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeImage];
+                                       cameraUI.delegate = self;
+                                       cameraUI.allowsEditing = YES;
+                                       [self presentViewController:cameraUI animated:YES completion:nil];
+                                   }
+                               }];
+    
+    
+    [alertController addAction:existingAction];
+    [alertController addAction:newAction];
+    
+    alertController.view.tintColor = [UIColor blackColor];
+    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

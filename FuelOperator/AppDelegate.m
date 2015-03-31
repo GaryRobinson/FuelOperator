@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 
-#define DATA_MODEL_VERSION @"1.1"
+#define DATA_MODEL_VERSION @"1.3"
 
 
 @interface AppDelegate ()
@@ -22,7 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [NewRelicAgent startWithApplicationToken:@"AAbd035cf0253ae2e54c3e0fa9e417ed3e7eb00b02"];
+//    [NewRelicAgent startWithApplicationToken:@"AAbd035cf0253ae2e54c3e0fa9e417ed3e7eb00b02"];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

@@ -249,8 +249,8 @@
     {
         if([a isAnswered])
             numAnswered++;
-        else
-            NSLog(@"not answered: %@", [a.formQuestion description]);
+//        else
+//            NSLog(@"not answered: %@", [a.formQuestion description]);
     }
     float value = (float)(numAnswered) / (float)(allAnswers.count);
     NSLog(@"%d of %d questions answered", numAnswered, allAnswers.count);

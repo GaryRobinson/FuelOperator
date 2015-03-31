@@ -85,14 +85,16 @@
         {
             FormQuestion *q = [_formQuestions objectAtIndex:i];
             NSString *catName = q.subCategory;
-            if([q.groupID integerValue] != 0)
-                catName = [NSString stringWithFormat:@"%@ %@", q.mainCategory, q.subCategory];
+            if(q.subCategory && q.componentID)
+                catName = [NSString stringWithFormat:@"%@ %@ - %@", q.mainCategory, q.componentID, q.subCategory];
             if(![catName isEqualToString:curCategory])
             {
                 curCategory =  catName;
                 [self.categories addObject:curCategory];
                 
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(mainCategory = %@) AND (subCategory = %@)", q.mainCategory, q.subCategory];
+                if(q.subCategory && q.componentID)
+                    predicate = [NSPredicate predicateWithFormat:@"(mainCategory = %@) AND (subCategory = %@) AND (componentID = %@)", q.mainCategory, q.subCategory, q.componentID];
                 NSArray *sectionQuestions = [_formQuestions filteredArrayUsingPredicate:predicate];
                 NSArray *sortedQuestions = [sectionQuestions sortedArrayUsingDescriptors:sortDescriptors];
                 [self.questionsPerCategory addObject:sortedQuestions];

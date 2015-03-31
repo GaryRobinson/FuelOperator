@@ -17,7 +17,7 @@
 
     #import <MagicalRecord/CoreData+MagicalRecord.h>
     #import <MagicalRecord/MagicalRecord.h>
-    #import <NewRelicAgent/NewRelic.h>
+//    #import <NewRelicAgent/NewRelic.h>
 
     #import "UIColor+Additions.h"
     #import "UIFont+Additions.h"

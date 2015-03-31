@@ -36,6 +36,7 @@
     self.forceComment = [dict numberForKey:@"comment_required"];
 //    self.answerRequired = [dict numberForKey:@"AnswerRequired"];
     self.imageRequired = [dict numberForKey:@"photo_required"];
+    self.componentID = [dict stringForKey:@"component_id"];
     
     //?? what about:
     //record_id

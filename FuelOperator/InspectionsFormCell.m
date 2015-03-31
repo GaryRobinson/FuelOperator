@@ -177,10 +177,6 @@
     rect.size.width = 230;
     self.questionLabel.frame = rect;
     
-    if(_formAnswer.photos.count > 0)
-        self.commentImageView.hidden = NO;
-    else
-        self.commentImageView.hidden = YES;
     
     if([_formAnswer.answer integerValue] == kUnanswered)
     {
@@ -211,6 +207,16 @@
         self.warningImageView.hidden = NO;
         self.warningLabel.hidden = NO;
     }
+    
+    if(_formAnswer.photos.count > 0)
+    {
+        self.commentImageView.hidden = NO;
+        self.warningImageView.hidden = YES;
+        self.warningLabel.hidden = YES;
+    }
+    else
+        self.commentImageView.hidden = YES;
+    
     
     [self setCellHeight];
 }

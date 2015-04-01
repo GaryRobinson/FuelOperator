@@ -8,7 +8,7 @@
 
 #import "HttpManager.h"
 
-static NSString * const kBaseURLString = @"http://www.fueloperator.com/api/v1/";
+static NSString * const kBaseURLString = @"https://www.fueloperator.com/api/v1/";
 static NSString * const myToken = @"20530f91ea0d42db2348911dec3e8a000a1b6e38";
 static NSString * const JSONResponseSerializerWithDataKey = @"JSONResponseSerializerWithDataKey";
 

@@ -111,7 +111,7 @@ static OnlineService *sharedOnlineService = nil;
 - (void)updateFacilities
 {
     NSDictionary *params = @{@"page_size" : @(10000)};
-    NSString *path = @"facilities";
+    NSString *path = @"facilities/";
     [[HttpManager manager] GET:path parameters:params
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -222,7 +222,7 @@ static OnlineService *sharedOnlineService = nil;
 - (void)getFacilityForInspection:(Inspection *)inspection
 {
     //hit the endpoint, make the facility, connect the inspection to it
-    NSString *path = [NSString stringWithFormat:@"facilities/%d", [inspection.facilityID intValue]];
+    NSString *path = [NSString stringWithFormat:@"facilities/%d/", [inspection.facilityID intValue]];
     [[HttpManager manager] GET:path parameters:nil
                        success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -257,7 +257,7 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)startInspection:(Inspection *)inspection
 {
-    NSString *path = [NSString stringWithFormat:@"inspections/start/%d/start", [inspection.inspectionID intValue]];
+    NSString *path = [NSString stringWithFormat:@"inspections/start/%d/start/", [inspection.inspectionID intValue]];
     [[HttpManager manager] POST:path parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -289,7 +289,7 @@ static OnlineService *sharedOnlineService = nil;
         return;
     }
     
-    NSString *path = [NSString stringWithFormat:@"inspections/%d/questions", [inspection.inspectionID intValue]];
+    NSString *path = [NSString stringWithFormat:@"inspections/%d/questions/", [inspection.inspectionID intValue]];
     [[HttpManager manager] GET:path parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -316,7 +316,7 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)getAnswersForInspection:(Inspection *)inspection
 {
-    NSString *path = [NSString stringWithFormat:@"inspections/%d/answers", [inspection.inspectionID intValue]];
+    NSString *path = [NSString stringWithFormat:@"inspections/%d/answers/", [inspection.inspectionID intValue]];
     [[HttpManager manager] GET:path parameters:nil
                        success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -349,7 +349,7 @@ static OnlineService *sharedOnlineService = nil;
     {
         FormAnswer *answer = (FormAnswer *)[answers objectAtIndex:i];
         
-        NSString *path = [NSString stringWithFormat:@"api/question/answer/%d", [answer.formQuestion.questionID intValue]];
+        NSString *path = [NSString stringWithFormat:@"api/question/answer/%d/", [answer.formQuestion.questionID intValue]];
         [[HttpManager manager] GET:path parameters:nil
                          success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
@@ -411,28 +411,21 @@ static OnlineService *sharedOnlineService = nil;
     }
     else
     {
-        NSString *post = [NSString stringWithFormat:@"inspections/%d/questions/%d",
+        NSString *put = [NSString stringWithFormat:@"inspections/%d/questions/%d/",
                           [self.postingInspection.inspectionID intValue],
                           [question.recordID intValue]];
         
-        NSNumber *answer = @(NO);
+        NSNumber *value = @(NO);
         if([question.formAnswer.answer intValue] == 1)
-            answer = @(YES);
+            value = @(YES);
         
-        NSString *comment = @"";
-        if(question.formAnswer.comment)
-            comment = question.formAnswer.comment;
-        
-        NSDictionary *params = @{@"question_id" : question.questionID,
-                                 @"question" : question.question,
-                                 @"record_id" : question.recordID,
-                                 @"answer" : answer,
-                                 @"answer_type" : @"Yes/No",// question.formAnswer.type,
+        NSDictionary *params = @{@"answer" : value,
                                  @"repaired_on_site" : question.formAnswer.repairedOnSite,
-                                 @"comment" : comment,
-                                 @"component_id" : @"None"};
+                                 @"comment" : [question.formAnswer commentText],
+                                 @"component_id" : @"None",
+                                 @"component_id_field_name" : [NSNull null]};
         
-        [[HttpManager manager] POST:post parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[HttpManager manager] PUT:put parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             
             [self uploadPhotosForAnswer:question.formAnswer];
             
@@ -448,7 +441,7 @@ static OnlineService *sharedOnlineService = nil;
 - (void)postAnswer:(FormAnswer *)answer
 {
     
-    NSString *post = [NSString stringWithFormat:@"inspections/%d/questions/%d",
+    NSString *put = [NSString stringWithFormat:@"inspections/%d/questions/%d/",
                       [answer.inspection.inspectionID intValue],
                       [answer.formQuestion.recordID intValue]];
     
@@ -456,16 +449,13 @@ static OnlineService *sharedOnlineService = nil;
     if([answer.answer intValue] == 1)
         value = @(YES);
     
-    NSDictionary *params = @{@"question_id" : answer.formQuestion.questionID,
-                             @"question" : answer.formQuestion.question,
-                             @"record_id" : answer.formQuestion.recordID,
-                             @"answer" : answer.answer,
-                             @"answer_type" : @"Yes/No",
-                             @"repaired_on_site" : answer.repairedOnSite,
-                             @"comment" : [answer commentText],
-                             @"component_id" : @"None"};
+    NSDictionary *params = @{@"answer" : value,
+                           @"repaired_on_site" : answer.repairedOnSite,
+                           @"comment" : [answer commentText],
+                           @"component_id" : @"None",
+                           @"component_id_field_name" : [NSNull null]};
     
-    [[HttpManager manager] POST:post parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[HttpManager manager] PUT:put parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         
         [self uploadPhotosForAnswer:answer];
         
@@ -478,7 +468,6 @@ static OnlineService *sharedOnlineService = nil;
 
 - (void)uploadPhotosForAnswer:(FormAnswer *)answer
 {
-    //?? just 1 photo until i get that working, then try all 3
     if(answer.photos.count == 0)
     {
         answer.submittted = @(YES);
@@ -498,7 +487,7 @@ static OnlineService *sharedOnlineService = nil;
 - (void)uploadPhoto:(Photo *)photo
 {
     NSError *err;
-    NSString *post = [NSString stringWithFormat:@"%@inspections/%d/attachments", [[HttpManager manager].baseURL absoluteString], [photo.formAnswer.inspection.inspectionID intValue]];
+    NSString *post = [NSString stringWithFormat:@"%@inspections/%d/attachments/", [[HttpManager manager].baseURL absoluteString], [photo.formAnswer.inspection.inspectionID intValue]];
     
     NSDictionary *params = @{@"type" : @"General",
                              @"question" : photo.formAnswer.formQuestion.recordID,
@@ -653,7 +642,7 @@ static OnlineService *sharedOnlineService = nil;
 - (void)saveSignatureImage
 {
     NSError *err;
-    NSString *post = [NSString stringWithFormat:@"%@inspections/%d/attachments", [[HttpManager manager].baseURL absoluteString], [self.postingInspection.inspectionID intValue]];
+    NSString *post = [NSString stringWithFormat:@"%@inspections/%d/attachments/", [[HttpManager manager].baseURL absoluteString], [self.postingInspection.inspectionID intValue]];
     
     NSDictionary *params = @{@"type" : @"Signature",
                              @"inspection" : self.postingInspection.inspectionID};
@@ -686,7 +675,7 @@ static OnlineService *sharedOnlineService = nil;
                              @"start" : [NSNull null],
                              @"stop" : [NSNull null]};
     params = nil;
-    NSString *post = [NSString stringWithFormat:@"inspections/%d/stop", [self.postingInspection.inspectionID intValue]];
+    NSString *post = [NSString stringWithFormat:@"inspections/%d/stop/", [self.postingInspection.inspectionID intValue]];
     [[HttpManager manager] PUT:post parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         
         self.postingInspection.submitted = [NSNumber numberWithBool:YES];

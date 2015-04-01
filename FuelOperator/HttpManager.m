@@ -38,7 +38,7 @@ static HttpManager *sharedInstance = nil;
     
 //    self.responseSerializer = [[FOResponseSerializer alloc] init];
     self.responseSerializer = [FOResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
-    self.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
+    self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", nil];
     
     return self;
 }
@@ -69,7 +69,10 @@ static HttpManager *sharedInstance = nil;
     
     id responseObject = [super responseObjectForResponse:response data:data error:error];
     if (*error != nil) {
-        NSLog(@"response serializer error: %@", [(*error).userInfo description]);
+        if([responseObject isKindOfClass:[NSString class]])
+            NSLog(@"response serializer error: %@", responseObject);
+        else
+            NSLog(@"response serializer error: %@", [(*error).userInfo description]);
         return nil;
     }
     if([responseObject isKindOfClass:[NSDictionary class]])

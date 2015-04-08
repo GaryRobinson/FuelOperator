@@ -415,12 +415,16 @@ static OnlineService *sharedOnlineService = nil;
                           [self.postingInspection.inspectionID intValue],
                           [question.recordID intValue]];
         
-        NSNumber *value = @(NO);
+        NSNumber *answer = @(NO);
         if([question.formAnswer.answer intValue] == 1)
-            value = @(YES);
+            answer = @(YES);
         
-        NSDictionary *params = @{@"answer" : value,
-                                 @"repaired_on_site" : question.formAnswer.repairedOnSite,
+        NSNumber *repairedOnSite = @(NO);
+        if([question.formAnswer.repairedOnSite intValue] == 1)
+            repairedOnSite = @(YES);
+        
+        NSDictionary *params = @{@"answer" : answer,
+                                 @"repaired_on_site" : repairedOnSite,
                                  @"comment" : [question.formAnswer commentText],
                                  @"component_id" : @"None",
                                  @"component_id_field_name" : [NSNull null]};
@@ -449,8 +453,12 @@ static OnlineService *sharedOnlineService = nil;
     if([answer.answer intValue] == 1)
         value = @(YES);
     
+    NSNumber *repairedOnSite = @(NO);
+    if([answer.repairedOnSite intValue] == 1)
+        repairedOnSite = @(YES);
+    
     NSDictionary *params = @{@"answer" : value,
-                           @"repaired_on_site" : answer.repairedOnSite,
+                           @"repaired_on_site" : repairedOnSite,
                            @"comment" : [answer commentText],
                            @"component_id" : @"None",
                            @"component_id_field_name" : [NSNull null]};

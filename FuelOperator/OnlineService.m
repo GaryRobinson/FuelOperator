@@ -497,7 +497,7 @@ static OnlineService *sharedOnlineService = nil;
     NSError *err;
     NSString *post = [NSString stringWithFormat:@"%@inspections/%d/attachments/", [[HttpManager manager].baseURL absoluteString], [photo.formAnswer.inspection.inspectionID intValue]];
     
-    NSDictionary *params = @{@"type" : @"General",
+    NSDictionary *params = @{@"type" : @"1",   //"General",
                              @"question" : photo.formAnswer.formQuestion.recordID,
                              @"inspection" : photo.formAnswer.inspection.inspectionID};
     NSURLRequest *request = [[HttpManager manager].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:post parameters:params
@@ -652,7 +652,7 @@ static OnlineService *sharedOnlineService = nil;
     NSError *err;
     NSString *post = [NSString stringWithFormat:@"%@inspections/%d/attachments/", [[HttpManager manager].baseURL absoluteString], [self.postingInspection.inspectionID intValue]];
     
-    NSDictionary *params = @{@"type" : @"Signature",
+    NSDictionary *params = @{@"type" : @"4", // "Signature",
                              @"inspection" : self.postingInspection.inspectionID};
     NSURLRequest *request = [[HttpManager manager].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:post parameters:params
                                                                           constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

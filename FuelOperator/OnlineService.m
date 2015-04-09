@@ -657,7 +657,7 @@ static OnlineService *sharedOnlineService = nil;
     NSURLRequest *request = [[HttpManager manager].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:post parameters:params
                                                                           constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                                                               
-                                                                              [formData appendPartWithFileData:UIImageJPEGRepresentation(self.signatureImage, 1.0) name:@"photo" fileName:@"photofile.png" mimeType:@"image/jpeg"];
+                                                                              [formData appendPartWithFileData:UIImageJPEGRepresentation(self.signatureImage, 1.0) name:@"file" fileName:@"photofile.png" mimeType:@"image/jpeg"];
                                                                               
                                                                           } error:&err];
     

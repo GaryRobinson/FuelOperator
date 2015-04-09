@@ -503,7 +503,7 @@ static OnlineService *sharedOnlineService = nil;
     NSURLRequest *request = [[HttpManager manager].requestSerializer multipartFormRequestWithMethod:@"POST" URLString:post parameters:params
                                                                           constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
                                                                               
-                                                                              [formData appendPartWithFileData:photo.jpgData name:@"photo" fileName:@"photofile.png" mimeType:@"image/jpeg"];
+                                                                              [formData appendPartWithFileData:photo.jpgData name:@"file" fileName:@"photofile.png" mimeType:@"image/jpeg"];
                                                                               
                                                                           } error:&err];
     

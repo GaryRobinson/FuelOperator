@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D113c" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Facility" representedClassName="Facility" syncable="YES">
         <attribute name="address1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="address2" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,6 +16,7 @@
     <entity name="FormAnswer" representedClassName="FormAnswer" syncable="YES">
         <attribute name="answer" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateAnswer" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dateModified" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="recordID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="repairedOnSite" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -27,6 +28,7 @@
     </entity>
     <entity name="FormQuestion" representedClassName="FormQuestion" syncable="YES">
         <attribute name="answerRequired" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="answerType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="componentID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="forceComment" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="groupID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -73,8 +75,8 @@
     </entity>
     <elements>
         <element name="Facility" positionX="-747" positionY="-292" width="128" height="208"/>
-        <element name="FormAnswer" positionX="-506" positionY="-324" width="128" height="193"/>
-        <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="253"/>
+        <element name="FormAnswer" positionX="-506" positionY="-342" width="128" height="208"/>
+        <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="268"/>
         <element name="Inspection" positionX="-756" positionY="-58" width="128" height="223"/>
         <element name="Photo" positionX="-335" positionY="-270" width="128" height="103"/>
         <element name="RequiredTypes" positionX="-351" positionY="-63" width="128" height="88"/>

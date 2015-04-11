@@ -37,6 +37,7 @@
 //    self.answerRequired = [dict numberForKey:@"AnswerRequired"];
     self.imageRequired = [dict numberForKey:@"photo_required"];
     self.componentID = [dict stringForKey:@"component_id"];
+    self.answerType = [dict stringForKey:@"answer_type"];
     
     //?? what about:
     //record_id
@@ -58,6 +59,24 @@
 + (NSString *)typeDispensers
 {
     return @"Dispenser";
+}
+
++ (NSString *)yesNoType
+{
+    return @"Yes/No";
+}
++ (NSString *)dateType
+{
+    return @"Date Field";
+}
+
+- (BOOL)isYesNo
+{
+    return [self.answerType isEqualToString:[FormQuestion yesNoType]];
+}
+- (BOOL)isDate
+{
+    return [self.answerType isEqualToString:[FormQuestion dateType]];
 }
 
 @end

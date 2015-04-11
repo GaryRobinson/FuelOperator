@@ -26,6 +26,8 @@
     self.user = [User loggedInUser];
     
     self.inspectionID = [dict numberForKey:@"id"];
+    if([self.inspectionID intValue] == 54)
+        NSLog(@"");
     self.status = [dict stringForKey:@"status"];
     if([self.status isEqualToString:[Inspection statusClosed]])
         self.submitted = @(YES);

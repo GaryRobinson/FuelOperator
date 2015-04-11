@@ -231,6 +231,9 @@
         answer = question.formAnswer;
     }
     
+    //?? if this answer type is a date, show a date picker and set it to the answer value, or to right now
+    // show the datepicker on the comments modal
+    
 //    if([answer.answer integerValue] == kNO)
         [self.formCategoryDelegate editCommentPhotosForAnswer:answer];
 }
@@ -258,24 +261,32 @@
     
     answer.dateModified = [NSDate date];
     
-    //update the question state according to the tap
-    NSInteger state = [answer.answer integerValue] + 1;
-    if(state > kNO)
-        state = kUnanswered;
-    answer.answer = [NSNumber numberWithInt:state];
-    
-    //?? save answer to server
-    if([answer isAnswered])
+    //?? Need to handle an answer that needs to be a date HERE!
+    if([answer.formQuestion isDate])
     {
-        [[OnlineService sharedService] postAnswer:answer];
+        [self.formCategoryDelegate editCommentPhotosForAnswer:answer];
     }
     else
-        answer.submittted = @(NO);
-    
-    
-    //show the changes
-    [self.formCategoryDelegate updateProgressView];
-    [self.tableView reloadData];
+    {
+        //update the question state according to the tap
+        NSInteger state = [answer.answer integerValue] + 1;
+        if(state > kNO)
+            state = kUnanswered;
+        answer.answer = [NSNumber numberWithInt:state];
+        
+        //?? save answer to server
+        if([answer isAnswered])
+        {
+            [[OnlineService sharedService] postAnswer:answer];
+        }
+        else
+            answer.submittted = @(NO);
+        
+        
+        //show the changes
+        [self.formCategoryDelegate updateProgressView];
+        [self.tableView reloadData];
+    }
 }
 
 /*

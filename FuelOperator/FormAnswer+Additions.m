@@ -66,7 +66,7 @@
 
 + (FormAnswer *)updateOrCreateFromDictionary:(NSDictionary *)answerDict andInspection:(Inspection *)inspection
 {
-    NSLog(@"update answer from dict");
+//    NSLog(@"update answer from dict");
     
     NSNumber *recordID = [answerDict numberForKey:@"record_id"];
     FormAnswer *answer = [FormAnswer MR_findFirstWithPredicate:[NSPredicate predicateWithFormat:@"recordID == %d", [recordID integerValue]]];

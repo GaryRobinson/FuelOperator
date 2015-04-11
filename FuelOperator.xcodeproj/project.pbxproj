@@ -46,14 +46,14 @@
 		3C8E5C8816E72158008BB8CF /* eau_douce_sans_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3C8E5C8216E72158008BB8CF /* eau_douce_sans_light.otf */; };
 		3C8E5C8916E72158008BB8CF /* eau_douce_sans_heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3C8E5C8316E72158008BB8CF /* eau_douce_sans_heavy.otf */; };
 		3C8E5C8A16E72158008BB8CF /* eau_douce_sans_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3C8E5C8416E72158008BB8CF /* eau_douce_sans_bold.otf */; };
+		3C9537451AD743B3000C53C1 /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9537441AD743B3000C53C1 /* FormQuestion.m */; };
+		3C9537481AD744C1000C53C1 /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9537471AD744C1000C53C1 /* FormAnswer.m */; };
 		3CA5EDDE17265A8600FD437F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA5EDDD17265A8600FD437F /* MobileCoreServices.framework */; };
 		3CB1EF3A17065A470058CF9A /* CommentPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB1EF3917065A470058CF9A /* CommentPhotoViewController.m */; };
 		3CB6FD5617BFD94000AEBF4A /* OnlineService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CB6FD5517BFD94000AEBF4A /* OnlineService.m */; };
 		3CBC0EDE1848D9A2009C3820 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC0EDD1848D9A2009C3820 /* Photo.m */; };
 		3CBC0EE1184A7777009C3820 /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC0EE0184A7777009C3820 /* SignatureViewController.m */; };
 		3CBC0EE4184A8002009C3820 /* SignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC0EE3184A8002009C3820 /* SignatureView.m */; };
-		3CC4612D1ACB57F40005ACCB /* FormQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC4612C1ACB57F40005ACCB /* FormQuestion.m */; };
-		3CCA42CC1AC70F1000D9F59D /* FormAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA42CB1AC70F1000D9F59D /* FormAnswer.m */; };
 		3CD3E89A17343821004C0EA5 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD3E89917343821004C0EA5 /* Icon@2x.png */; };
 		3CD3E89C1734383E004C0EA5 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CD3E89B1734383E004C0EA5 /* Icon.png */; };
 		3CDE79D91AAB8CE000A38BD6 /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CDE79D81AAB8CE000A38BD6 /* HttpManager.m */; };
@@ -142,6 +142,10 @@
 		3C8E5C8216E72158008BB8CF /* eau_douce_sans_light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = eau_douce_sans_light.otf; path = Resources/eau_douce_sans_light.otf; sourceTree = "<group>"; };
 		3C8E5C8316E72158008BB8CF /* eau_douce_sans_heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = eau_douce_sans_heavy.otf; path = Resources/eau_douce_sans_heavy.otf; sourceTree = "<group>"; };
 		3C8E5C8416E72158008BB8CF /* eau_douce_sans_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = eau_douce_sans_bold.otf; path = Resources/eau_douce_sans_bold.otf; sourceTree = "<group>"; };
+		3C9537431AD743B3000C53C1 /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
+		3C9537441AD743B3000C53C1 /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
+		3C9537461AD744C1000C53C1 /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
+		3C9537471AD744C1000C53C1 /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
 		3CA5EDDD17265A8600FD437F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3CB1EF3817065A460058CF9A /* CommentPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPhotoViewController.h; sourceTree = "<group>"; };
 		3CB1EF3917065A470058CF9A /* CommentPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPhotoViewController.m; sourceTree = "<group>"; };
@@ -153,10 +157,6 @@
 		3CBC0EE0184A7777009C3820 /* SignatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureViewController.m; sourceTree = "<group>"; };
 		3CBC0EE2184A8002009C3820 /* SignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureView.h; sourceTree = "<group>"; };
 		3CBC0EE3184A8002009C3820 /* SignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureView.m; sourceTree = "<group>"; };
-		3CC4612B1ACB57F40005ACCB /* FormQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormQuestion.h; sourceTree = "<group>"; };
-		3CC4612C1ACB57F40005ACCB /* FormQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormQuestion.m; sourceTree = "<group>"; };
-		3CCA42CA1AC70F1000D9F59D /* FormAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormAnswer.h; sourceTree = "<group>"; };
-		3CCA42CB1AC70F1000D9F59D /* FormAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormAnswer.m; sourceTree = "<group>"; };
 		3CD3E89917343821004C0EA5 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		3CD3E89B1734383E004C0EA5 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		3CDE79D71AAB8CE000A38BD6 /* HttpManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpManager.h; sourceTree = "<group>"; };
@@ -343,14 +343,14 @@
 		3C78338016DDE13E0037ED08 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3C9537461AD744C1000C53C1 /* FormAnswer.h */,
+				3C9537471AD744C1000C53C1 /* FormAnswer.m */,
+				3C9537431AD743B3000C53C1 /* FormQuestion.h */,
+				3C9537441AD743B3000C53C1 /* FormQuestion.m */,
 				3CDF674E1AB2B7F20094DD69 /* Facility.h */,
 				3CDF674F1AB2B7F20094DD69 /* Facility.m */,
 				3CDF67581AB398CB0094DD69 /* Inspection.h */,
 				3CDF67591AB398CB0094DD69 /* Inspection.m */,
-				3CCA42CA1AC70F1000D9F59D /* FormAnswer.h */,
-				3CCA42CB1AC70F1000D9F59D /* FormAnswer.m */,
-				3CC4612B1ACB57F40005ACCB /* FormQuestion.h */,
-				3CC4612C1ACB57F40005ACCB /* FormQuestion.m */,
 				3C78336416DDD5E70037ED08 /* FuelOperator.xcdatamodeld */,
 				3CBC0EDC1848D9A2009C3820 /* Photo.h */,
 				3CBC0EDD1848D9A2009C3820 /* Photo.m */,
@@ -566,7 +566,7 @@
 			files = (
 				3CDE79D91AAB8CE000A38BD6 /* HttpManager.m in Sources */,
 				3CBC0EDE1848D9A2009C3820 /* Photo.m in Sources */,
-				3CC4612D1ACB57F40005ACCB /* FormQuestion.m in Sources */,
+				3C9537451AD743B3000C53C1 /* FormQuestion.m in Sources */,
 				3CDF67501AB2B7F20094DD69 /* Facility.m in Sources */,
 				3CDFA02718415ABB009C839A /* FormQuestion+Additions.m in Sources */,
 				3C78335916DDD5E70037ED08 /* main.m in Sources */,
@@ -600,7 +600,7 @@
 				3CFBA4D0175946BC00F47978 /* NSDate+Additions.m in Sources */,
 				3C063F8A17CDC4D600BAF3FE /* FormCategoryView.m in Sources */,
 				3CDFA0211841417E009C839A /* Inspection+Additions.m in Sources */,
-				3CCA42CC1AC70F1000D9F59D /* FormAnswer.m in Sources */,
+				3C9537481AD744C1000C53C1 /* FormAnswer.m in Sources */,
 				3CBC0EE1184A7777009C3820 /* SignatureViewController.m in Sources */,
 				3C3D0C261820D4E3002F6536 /* NSString+Additions.m in Sources */,
 				3CDFA01B18412038009C839A /* NSDictionary+Additions.m in Sources */,

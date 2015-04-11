@@ -17,4 +17,10 @@
 + (NSString *)typeTanks;
 + (NSString *)typeDispensers;
 
++ (NSString *)yesNoType;
++ (NSString *)dateType;
+
+- (BOOL)isYesNo;
+- (BOOL)isDate;
+
 @end

@@ -19,8 +19,10 @@
 
 + (NSString *)yesNoType;
 + (NSString *)dateType;
++ (NSString *)userEnteredType;
 
 - (BOOL)isYesNo;
 - (BOOL)isDate;
+- (BOOL)isUserEntered;
 
 @end

@@ -9,7 +9,7 @@
 #import "CommentPhotoViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface CommentPhotoViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface CommentPhotoViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 
 @property (nonatomic) BOOL readOnly;
 @property (nonatomic, strong) FormAnswer *answer;
@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UIView *fakeNavBar;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *questionLabel;
+@property (nonatomic, strong) UITextField *dateField;
 @property (nonatomic, strong) UILabel *commentLabel;
 @property (nonatomic, strong) UIImageView *commentBackgroundView;
 @property (nonatomic, strong) UITextView *commentTextView;
@@ -41,6 +42,10 @@
 @property (nonatomic) NSInteger removeIndex;
 
 @property (nonatomic, strong) UIToolbar *doneKeyboardToolbar;
+
+@property (nonatomic) CGFloat dateHeight;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UIToolbar *doneKeyboardDateToolbar;
 
 @end
 
@@ -163,6 +168,9 @@
 {
     [self.commentTextView resignFirstResponder];
     
+    if([self.answer.formQuestion isDate] && self.answer.dateAnswer)
+        self.answer.answer = @(kYES);
+    
     //comments
     self.answer.comment = self.commentTextView.text;
     self.answer.repairedOnSite = [NSNumber numberWithBool:self.repairedSwitch.on];
@@ -229,6 +237,7 @@
         _scrollView.backgroundColor = [UIColor fopOffWhiteColor];
         
         [_scrollView addSubview:self.questionLabel];
+        [_scrollView addSubview:self.dateField];
         [_scrollView addSubview:self.commentLabel];
         [_scrollView addSubview:self.commentBackgroundView];
         [_scrollView addSubview:self.commentTextView];
@@ -264,11 +273,95 @@
     return _questionLabel;
 }
 
+- (UITextField *)dateField
+{
+    if(_dateField == nil)
+    {
+        CGRect frame = CGRectZero;
+        self.dateHeight = 0;
+        if([self.answer.formQuestion isDate])
+        {
+            frame = CGRectMake(10, 35 + self.questionLabel.frame.size.height, self.view.frame.size.width-20, 30);
+            self.dateHeight = 40;
+        }
+        _dateField = [[UITextField alloc] initWithFrame:frame];
+        _dateField.delegate = self;
+        _dateField.autocorrectionType = UITextAutocorrectionTypeNo;
+        _dateField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        _dateField.textColor = [UIColor darkTextColor];
+        _dateField.backgroundColor = [UIColor whiteColor];
+        
+        if([self.answer.formQuestion isDate] && self.answer.dateAnswer)
+        {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"MM/dd/yy"];
+            _dateField.text = [formatter stringFromDate:self.answer.dateAnswer];
+        }
+        
+        _dateField.inputView = self.datePicker;
+        _dateField.inputAccessoryView = self.doneKeyboardDateToolbar;
+    }
+    return _dateField;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (UIDatePicker *)datePicker
+{
+    if(_datePicker == nil)
+    {
+        _datePicker = [[UIDatePicker alloc] init];
+        _datePicker.datePickerMode = UIDatePickerModeDate;
+        _datePicker.backgroundColor = [UIColor clearColor];
+    }
+    return _datePicker;
+}
+
+- (UIToolbar *)doneKeyboardDateToolbar
+{
+    if(_doneKeyboardDateToolbar == nil)
+    {
+        _doneKeyboardDateToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        _doneKeyboardDateToolbar.translucent = YES;
+        UIBarButtonItem* doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneTapped:)];
+        _doneKeyboardDateToolbar.tintColor = [UIColor fopDarkText];
+        [_doneKeyboardDateToolbar setItems:[NSArray arrayWithObjects:doneBarButton, nil]];
+    }
+    return _doneKeyboardDateToolbar;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == self.dateField)
+    {
+        self.answer.dateAnswer = self.datePicker.date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MM/dd/yy"];
+        self.dateField.text = [formatter stringFromDate:self.answer.dateAnswer];
+    }
+}
+
+- (void)doneTapped:(id)sender
+{
+    if([self.dateField isFirstResponder])
+    {
+        self.answer.dateAnswer = self.datePicker.date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MM/dd/yy"];
+        self.dateField.text = [formatter stringFromDate:self.answer.dateAnswer];
+        [self.dateField resignFirstResponder];
+    }
+}
+
 - (UILabel*)commentLabel
 {
     if(_commentLabel == nil)
     {
-        _commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 35 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 30)];
+        _commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 35 + self.questionLabel.frame.size.height + self.dateHeight, self.view.bounds.size.width - 20, 30)];
         _commentLabel.backgroundColor = [UIColor clearColor];
         _commentLabel.font = [UIFont boldFontOfSize:20];
         _commentLabel.textColor = [UIColor fopDarkGreyColor];
@@ -287,7 +380,7 @@
         _commentBackgroundView = [[UIImageView alloc] initWithImage:commentBackgroundImage];
         _commentBackgroundView.contentMode = UIViewContentModeScaleToFill;
         _commentBackgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _commentBackgroundView.frame = CGRectMake(10, 65 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 130);
+        _commentBackgroundView.frame = CGRectMake(10, 65 + self.questionLabel.frame.size.height + self.dateHeight, self.view.bounds.size.width - 20, 130);
         
         _commentBackgroundView.layer.cornerRadius = 5;//10;
         _commentBackgroundView.layer.masksToBounds = YES;
@@ -299,7 +392,7 @@
 {
     if(_commentTextView == nil)
     {
-        _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 65 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 30, 130)];
+        _commentTextView = [[UITextView alloc] initWithFrame:CGRectMake(15, 65 + self.questionLabel.frame.size.height + self.dateHeight, self.view.bounds.size.width - 30, 130)];
         _commentTextView.backgroundColor = [UIColor clearColor];
         _commentTextView.layer.cornerRadius = 10;
         _commentTextView.layer.masksToBounds = YES;
@@ -321,10 +414,10 @@
     {
         _doneKeyboardToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 35)];
         _doneKeyboardToolbar.translucent = YES;
+        _doneKeyboardToolbar.tintColor = [UIColor fopDarkText];
         UIBarButtonItem* doneBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissKeyboard:)];
         UIBarButtonItem* flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem* clearBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(clearComment:)];
-        _doneKeyboardToolbar.tintColor = [UIColor fopDarkText];
         [_doneKeyboardToolbar setItems:[NSArray arrayWithObjects:doneBarButton, flexibleSpace, clearBarButton, nil]];
     }
     return _doneKeyboardToolbar;
@@ -344,7 +437,7 @@
 {
     if(_repairedLabel == nil)
     {
-        _repairedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 215 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 35)];
+        _repairedLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 215 + self.questionLabel.frame.size.height + self.dateHeight, self.view.bounds.size.width - 20, 35)];
         _repairedLabel.font = [UIFont boldFontOfSize:20];
         _repairedLabel.textColor = [UIColor fopDarkGreyColor];
         _repairedLabel.text = @"Repaired On-Site?";
@@ -356,7 +449,7 @@
 {
     if(_repairedSwitch == nil)
     {
-        _repairedSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20 - 50, 215 + self.questionLabel.frame.size.height, 50, 35)];
+        _repairedSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 20 - 50, 215 + self.questionLabel.frame.size.height + self.dateHeight, 50, 35)];
         _repairedSwitch.on = [self.answer.repairedOnSite boolValue];
         if(self.readOnly)
             _repairedSwitch.userInteractionEnabled = NO;
@@ -368,7 +461,7 @@
 {
     if(_photosLabel == nil)
     {
-        _photosLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 250 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 30)];
+        _photosLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 250 + self.questionLabel.frame.size.height + self.dateHeight, self.view.bounds.size.width - 20, 30)];
         _photosLabel.backgroundColor = [UIColor clearColor];
         _photosLabel.font = [UIFont boldFontOfSize:20];
         _photosLabel.textColor = [UIColor fopDarkGreyColor];
@@ -381,7 +474,7 @@
 {
     if(_noPhotosLabel == nil)
     {
-        _noPhotosLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 280 + self.questionLabel.frame.size.height, self.view.bounds.size.width - 20, 20)];
+        _noPhotosLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 280 + self.questionLabel.frame.size.height + self.dateHeight, self.view.bounds.size.width - 20, 20)];
         _noPhotosLabel.backgroundColor = [UIColor clearColor];
         _noPhotosLabel.font = [UIFont regularFontOfSize:16];
         _noPhotosLabel.textColor = [UIColor fopDarkGreyColor];
@@ -405,7 +498,7 @@
 {
     if(_imageView1 == nil)
     {
-        _imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 290 + self.questionLabel.frame.size.height, 90, 70)];
+        _imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(10, 290 + self.questionLabel.frame.size.height + self.dateHeight, 90, 70)];
         _imageView1.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _imageView1;
@@ -416,7 +509,7 @@
     if(_removeImageButton1 == nil)
     {
         _removeImageButton1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _removeImageButton1.frame = CGRectMake(10, 375 + self.questionLabel.frame.size.height, 90, 28);
+        _removeImageButton1.frame = CGRectMake(10, 375 + self.questionLabel.frame.size.height + self.dateHeight, 90, 28);
         [_removeImageButton1 setImage:[UIImage imageNamed:@"removeButtonImage"] forState:UIControlStateNormal];
         [_removeImageButton1 addTarget:self action:@selector(removeImageButton1Tapped:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -478,7 +571,7 @@
 {
     if(_imageView2 == nil)
     {
-        _imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(115, 290 + self.questionLabel.frame.size.height, 90, 70)];
+        _imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(115, 290 + self.questionLabel.frame.size.height + self.dateHeight, 90, 70)];
         _imageView2.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _imageView2;
@@ -489,7 +582,7 @@
     if(_removeImageButton2 == nil)
     {
         _removeImageButton2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _removeImageButton2.frame = CGRectMake(115, 375 + self.questionLabel.frame.size.height, 90, 28);
+        _removeImageButton2.frame = CGRectMake(115, 375 + self.questionLabel.frame.size.height + self.dateHeight, 90, 28);
         [_removeImageButton2 setImage:[UIImage imageNamed:@"removeButtonImage"] forState:UIControlStateNormal];
         [_removeImageButton2 addTarget:self action:@selector(removeImageButton2Tapped:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -512,7 +605,7 @@
 {
     if(_imageView3 == nil)
     {
-        _imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(220, 290 + self.questionLabel.frame.size.height, 90, 70)];
+        _imageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(220, 290 + self.questionLabel.frame.size.height + self.dateHeight, 90, 70)];
         _imageView3.contentMode = UIViewContentModeScaleAspectFill;
     }
     return _imageView3;
@@ -523,7 +616,7 @@
     if(_removeImageButton3 == nil)
     {
         _removeImageButton3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _removeImageButton3.frame = CGRectMake(220, 375 + self.questionLabel.frame.size.height, 90, 28);
+        _removeImageButton3.frame = CGRectMake(220, 375 + self.questionLabel.frame.size.height + self.dateHeight, 90, 28);
         [_removeImageButton3 setImage:[UIImage imageNamed:@"removeButtonImage"] forState:UIControlStateNormal];
         [_removeImageButton3 addTarget:self action:@selector(removeImageButton3Tapped:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -553,7 +646,7 @@
         _takePhotoButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *image = [UIImage imageNamed:@"take-photo-btn"];
         [_takePhotoButton setImage:image forState:UIControlStateNormal];
-        _takePhotoButton.frame = CGRectMake(10, 320 + self.questionLabel.frame.size.height, image.size.width, image.size.height);
+        _takePhotoButton.frame = CGRectMake(10, 320 + self.questionLabel.frame.size.height + self.dateHeight, image.size.width, image.size.height);
         [_takePhotoButton addTarget:self action:@selector(takePhotoTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _takePhotoButton;
@@ -647,7 +740,7 @@
         self.removeImageButton3.hidden = YES;
         
         CGRect rect = self.takePhotoButton.frame;
-        rect.origin.y = 320 + self.questionLabel.frame.size.height;
+        rect.origin.y = 320 + self.questionLabel.frame.size.height + self.dateHeight;
         self.takePhotoButton.frame = rect;
     }
     else
@@ -679,7 +772,7 @@
         }
         
         CGRect rect = self.takePhotoButton.frame;
-        rect.origin.y = 415 + self.questionLabel.frame.size.height;
+        rect.origin.y = 415 + self.questionLabel.frame.size.height + self.dateHeight;
         self.takePhotoButton.frame = rect;
     }
     

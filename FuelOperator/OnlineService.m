@@ -415,19 +415,45 @@ static OnlineService *sharedOnlineService = nil;
                           [self.postingInspection.inspectionID intValue],
                           [question.recordID intValue]];
         
-        NSNumber *answer = @(NO);
-        if([question.formAnswer.answer intValue] == 1)
-            answer = @(YES);
-        
+        NSDictionary *params;
+    
         NSNumber *repairedOnSite = @(NO);
         if([question.formAnswer.repairedOnSite intValue] == 1)
             repairedOnSite = @(YES);
         
-        NSDictionary *params = @{@"answer" : answer,
-                                 @"repaired_on_site" : repairedOnSite,
-                                 @"comment" : [question.formAnswer commentText],
-                                 @"component_id" : @"None",
-                                 @"component_id_field_name" : [NSNull null]};
+        if([question isDate])
+        {
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+            NSString *strDate = [formatter stringFromDate:question.formAnswer.dateAnswer];
+            
+            params = @{@"answer" : strDate,
+                       @"repaired_on_site" : repairedOnSite,
+                       @"comment" : [question.formAnswer commentText],
+                       @"component_id" : @"None",
+                       @"component_id_field_name" : [NSNull null]};
+        }
+        else if([question isUserEntered])
+        {
+            params = @{@"answer" : @"1",
+                       @"repaired_on_site" : repairedOnSite,
+                       @"comment" : [question.formAnswer commentText],
+                       @"component_id" : @"None",
+                       @"component_id_field_name" : [NSNull null]};
+        }
+        else
+        {
+        
+            NSNumber *answer = @(NO);
+            if([question.formAnswer.answer intValue] == 1)
+                answer = @(YES);
+            
+            params = @{  @"answer" : answer,
+                         @"repaired_on_site" : repairedOnSite,
+                         @"comment" : [question.formAnswer commentText],
+                         @"component_id" : @"None",
+                         @"component_id_field_name" : [NSNull null]};
+        }
         
         [[HttpManager manager] PUT:put parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
             
@@ -449,19 +475,45 @@ static OnlineService *sharedOnlineService = nil;
                       [answer.inspection.inspectionID intValue],
                       [answer.formQuestion.recordID intValue]];
     
-    NSNumber *value = @(NO);
-    if([answer.answer intValue] == 1)
-        value = @(YES);
+    NSDictionary *params;
     
     NSNumber *repairedOnSite = @(NO);
     if([answer.repairedOnSite intValue] == 1)
         repairedOnSite = @(YES);
     
-    NSDictionary *params = @{@"answer" : value,
-                           @"repaired_on_site" : repairedOnSite,
-                           @"comment" : [answer commentText],
-                           @"component_id" : @"None",
-                           @"component_id_field_name" : [NSNull null]};
+    if([answer.formQuestion isDate])
+    {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+        NSString *strDate = [formatter stringFromDate:answer.dateAnswer];
+        
+        params = @{@"answer" : strDate,
+                   @"repaired_on_site" : repairedOnSite,
+                   @"comment" : [answer commentText],
+                   @"component_id" : @"None",
+                   @"component_id_field_name" : [NSNull null]};
+    }
+    else if([answer.formQuestion isUserEntered])
+    {
+        params = @{@"answer" : @"1",
+                   @"repaired_on_site" : repairedOnSite,
+                   @"comment" : [answer commentText],
+                   @"component_id" : @"None",
+                   @"component_id_field_name" : [NSNull null]};
+    }
+    else
+    {
+        NSNumber *value = @(NO);
+        if([answer.answer intValue] == 1)
+            value = @(YES);
+        
+        params = @{@"answer" : value,
+                   @"repaired_on_site" : repairedOnSite,
+                   @"comment" : [answer commentText],
+                   @"component_id" : @"None",
+                   @"component_id_field_name" : [NSNull null]};
+    }
+    
     
     [[HttpManager manager] PUT:put parameters:params success: ^(AFHTTPRequestOperation *operation, id responseObject) {
         

@@ -22,6 +22,7 @@
         <attribute name="repairedOnSite" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="submittted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userEnteredIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="formQuestion" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="FormQuestion" inverseName="formAnswer" inverseEntity="FormQuestion" syncable="YES"/>
         <relationship name="inspection" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Inspection" inverseName="formAnswers" inverseEntity="Inspection" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="formAnswer" inverseEntity="Photo" syncable="YES"/>
@@ -75,7 +76,7 @@
     </entity>
     <elements>
         <element name="Facility" positionX="-747" positionY="-292" width="128" height="208"/>
-        <element name="FormAnswer" positionX="-506" positionY="-342" width="128" height="208"/>
+        <element name="FormAnswer" positionX="-506" positionY="-342" width="128" height="223"/>
         <element name="FormQuestion" positionX="-531" positionY="-108" width="128" height="268"/>
         <element name="Inspection" positionX="-756" positionY="-58" width="128" height="223"/>
         <element name="Photo" positionX="-335" positionY="-270" width="128" height="103"/>

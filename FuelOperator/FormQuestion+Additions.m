@@ -69,6 +69,10 @@
 {
     return @"Date Field";
 }
++ (NSString *)userEnteredType
+{
+    return @"User Entered";
+}
 
 - (BOOL)isYesNo
 {
@@ -77,6 +81,10 @@
 - (BOOL)isDate
 {
     return [self.answerType isEqualToString:[FormQuestion dateType]];
+}
+- (BOOL)isUserEntered
+{
+    return [self.answerType isEqualToString:[FormQuestion userEnteredType]];
 }
 
 @end

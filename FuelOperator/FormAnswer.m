@@ -22,7 +22,7 @@
 @dynamic repairedOnSite;
 @dynamic submittted;
 @dynamic type;
-@dynamic userEnteredIndex;
+@dynamic userEnteredValue;
 @dynamic formQuestion;
 @dynamic inspection;
 @dynamic photos;

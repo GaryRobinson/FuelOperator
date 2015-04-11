@@ -3,15 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "__56-[OnlineService getScheduledInspectionsFromDate:toDate:]_block_invoke:OnlineService.m">
+         contextName = "__31-[OnlineService postNextAnswer]_block_invoke277:OnlineService.m">
          <PersistentStrings>
             <PersistentString
-               value = "results">
+               value = "path">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[InspectionFormViewController tableView:cellForRowAtIndexPath:]:InspectionFormViewController.m">
+         contextName = "-[InspectionFormViewController dispensersButtonTapped:]:InspectionFormViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[OnlineService authenticate]:OnlineService.m">
+      </ContextState>
+      <ContextState
+         contextName = "__32-[OnlineService login:password:]_block_invoke:OnlineService.m">
       </ContextState>
       <ContextState
          contextName = "-[OnlineService realLogin]:OnlineService.m">
@@ -22,54 +28,36 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[FormCategoryView updateAnswers]:FormCategoryView.m">
-      </ContextState>
-      <ContextState
-         contextName = "__42-[OnlineService getFacilityForInspection:]_block_invoke:OnlineService.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "inspection">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "__41-[RootContainerViewController toggleOpen]_block_invoke67:RootContainerViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[InspectionFormViewController viewDidLoad]:InspectionFormViewController.m">
       </ContextState>
       <ContextState
-         contextName = "-[InspectionsListViewController locationManager:didUpdateToLocation:fromLocation:]:InspectionsListViewController.m">
+         contextName = "__56-[OnlineService getScheduledInspectionsFromDate:toDate:]_block_invoke:OnlineService.m">
          <PersistentStrings>
             <PersistentString
-               value = "newLocation.coordinate.latitude">
+               value = "results">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[FormCategoryView setFormQuestions:]:FormCategoryView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[RootContainerViewController toggleOpen]:RootContainerViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CommentPhotoViewController dateField]:CommentPhotoViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CommentPhotoViewController pickerField]:CommentPhotoViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[InspectionFormViewController questionsUpdated:]:InspectionFormViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "tanksQuestions[0].inspection">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__32-[OnlineService login:password:]_block_invoke_2:OnlineService.m">
-      </ContextState>
-      <ContextState
-         contextName = "__31-[OnlineService postNextAnswer]_block_invoke277:OnlineService.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "path">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__41-[RootContainerViewController toggleOpen]_block_invoke67:RootContainerViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[FormCategoryView tableView:didSelectRowAtIndexPath:]:FormCategoryView.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "answer.formQuestion">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -85,10 +73,40 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__32-[OnlineService login:password:]_block_invoke:OnlineService.m">
+         contextName = "-[InspectionFormViewController tableView:cellForRowAtIndexPath:]:InspectionFormViewController.m">
       </ContextState>
       <ContextState
-         contextName = "-[OnlineService authenticate]:OnlineService.m">
+         contextName = "__42-[OnlineService getFacilityForInspection:]_block_invoke:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "inspection">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__37-[OnlineService addQuestionsForForm:]_block_invoke:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "results">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[CircularProgressView drawRect:]:CircularProgressView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CommentPhotoViewController saveTapped:]:CommentPhotoViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__34-[OnlineService processNextAnswer]_block_invoke_2:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "answer.inspection.inspectionID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[InspectionFormViewController viewDidLayoutSubviews]:InspectionFormViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[FormAnswer(Additions) updateFromDictionary:]:FormAnswer+Additions.m">
@@ -97,6 +115,31 @@
                value = "self.dateModified">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[OnlineService postAnswer:]:OnlineService.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "answer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__32-[OnlineService login:password:]_block_invoke_2:OnlineService.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[InspectionsListViewController switchView]:InspectionsListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__33-[OnlineService updateFacilities]_block_invoke:OnlineService.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[CommentPhotoViewController commentLabel]:CommentPhotoViewController.m">
       </ContextState>
       <ContextState
          contextName = "-[OnlineService submitInspection:]:OnlineService.m">
@@ -110,13 +153,43 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[InspectionFormViewController viewDidLayoutSubviews]:InspectionFormViewController.m">
+         contextName = "-[CommentPhotoViewController commentTextView]:CommentPhotoViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[InspectionFormViewController tableView:heightForRowAtIndexPath:]:InspectionFormViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[InspectionsListViewController locationManager:didUpdateToLocation:fromLocation:]:InspectionsListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "newLocation.coordinate.latitude">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[FormCategoryView tableView:didSelectRowAtIndexPath:]:FormCategoryView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "answer.formQuestion">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "__31-[OnlineService postNextAnswer]_block_invoke256:OnlineService.m">
          <PersistentStrings>
             <PersistentString
                value = "params">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[FormCategoryView updateAnswers]:FormCategoryView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[FOResponseSerializer responseObjectForResponse:data:error:]:HttpManager.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "error">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -129,62 +202,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__37-[OnlineService addQuestionsForForm:]_block_invoke:OnlineService.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "results">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[InspectionFormViewController dispensersButtonTapped:]:InspectionFormViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[OnlineService postNextAnswer]:OnlineService.m">
          <PersistentStrings>
             <PersistentString
                value = "question.formAnswer">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__34-[OnlineService processNextAnswer]_block_invoke_2:OnlineService.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "answer.inspection.inspectionID">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__33-[OnlineService updateFacilities]_block_invoke:OnlineService.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[CircularProgressView drawRect:]:CircularProgressView.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[FOResponseSerializer responseObjectForResponse:data:error:]:HttpManager.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "error">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[FormCategoryView setFormQuestions:]:FormCategoryView.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[InspectionFormViewController tableView:heightForRowAtIndexPath:]:InspectionFormViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[InspectionsListViewController switchView]:InspectionsListViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.view">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[RootContainerViewController toggleOpen]:RootContainerViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -84,7 +84,17 @@
 {
     self.recordID = [dict numberForKey:@"record_id"];
     
-    self.answer = [dict numberForKey:@"answer"];
+    //?? it could be a date or string, not necessarily a number
+    NSObject *unknownAnswer = dict[@"answer"];
+    if([unknownAnswer isKindOfClass:[NSString class]])
+    {
+        self.answer = @(YES);
+        //probably want to save the answer
+    }
+    else
+        self.answer = [dict numberForKey:@"answer"];
+    
+    
     //no is probably 0, I need to change it to my enum
     if([self.answer intValue] == 0)
         self.answer = @(kNO);

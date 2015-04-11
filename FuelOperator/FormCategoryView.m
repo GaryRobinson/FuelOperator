@@ -262,7 +262,7 @@
     answer.dateModified = [NSDate date];
     
     //?? Need to handle an answer that needs to be a date HERE!
-    if([answer.formQuestion isDate])
+    if([answer.formQuestion isDate] || [answer.formQuestion isUserEntered])
     {
         [self.formCategoryDelegate editCommentPhotosForAnswer:answer];
     }

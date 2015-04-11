@@ -39,11 +39,18 @@
     self.componentID = [dict stringForKey:@"component_id"];
     self.answerType = [dict stringForKey:@"answer_type"];
     
-    //?? what about:
-    //record_id
-    //component_id
-    //component_id_field_name
-//    NSLog(@"saved question recordID=%d, inspectionID=%d", [self.recordID intValue], [self.inspection.inspectionID intValue]);
+    if([self isUserEntered])
+    {
+        NSArray *values = dict[@"values"];
+        NSString *strValues = @"";
+        for(NSString *s in values)
+        {
+            strValues = [strValues stringByAppendingString:s];
+            strValues = [strValues stringByAppendingString:@";"];
+        }
+        self.values = strValues;
+    }
+    
 }
 
 + (NSString *)typeFacility

@@ -21,7 +21,7 @@
 @property (nonatomic, retain) NSNumber * repairedOnSite;
 @property (nonatomic, retain) NSNumber * submittted;
 @property (nonatomic, retain) NSString * type;
-@property (nonatomic, retain) NSNumber * userEnteredIndex;
+@property (nonatomic, retain) NSString * userEnteredValue;
 @property (nonatomic, retain) FormQuestion *formQuestion;
 @property (nonatomic, retain) Inspection *inspection;
 @property (nonatomic, retain) NSSet *photos;

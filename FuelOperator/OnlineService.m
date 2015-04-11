@@ -435,7 +435,7 @@ static OnlineService *sharedOnlineService = nil;
         }
         else if([question isUserEntered])
         {
-            params = @{@"answer" : @"1",
+            params = @{@"answer" : question.formAnswer.userEnteredValue,
                        @"repaired_on_site" : repairedOnSite,
                        @"comment" : [question.formAnswer commentText],
                        @"component_id" : @"None",
@@ -495,7 +495,7 @@ static OnlineService *sharedOnlineService = nil;
     }
     else if([answer.formQuestion isUserEntered])
     {
-        params = @{@"answer" : @"1",
+        params = @{@"answer" : answer.userEnteredValue,
                    @"repaired_on_site" : repairedOnSite,
                    @"comment" : [answer commentText],
                    @"component_id" : @"None",

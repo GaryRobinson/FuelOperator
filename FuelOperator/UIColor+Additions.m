@@ -32,7 +32,7 @@
 
 + (UIColor *)fopYellowColor
 {
-    return [self colorWithRed:208/255. green:193/255. blue:0/255. alpha:1.0];
+    return [self colorWithRed:246/255. green:174/255. blue:106/255. alpha:1.0];
 }
 
 + (UIColor *)fopOffWhiteColor

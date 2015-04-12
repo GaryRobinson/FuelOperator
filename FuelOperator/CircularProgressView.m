@@ -43,7 +43,7 @@
     CGContextStrokeEllipseInRect(context, backgroundRect);
     
     CGContextBeginPath(context);
-    CGContextSetStrokeColorWithColor(context, [UIColor fopYellowColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor fopOrangeColor].CGColor);
     CGContextSetLineWidth(context, 5.0);
     CGContextAddArc(context, self.bounds.size.width/2, self.bounds.size.height/2, self.bounds.size.width/2-4, -1 *M_PI_2, self.progress * 2. * M_PI - M_PI_2, 0);
     CGContextStrokePath(context);

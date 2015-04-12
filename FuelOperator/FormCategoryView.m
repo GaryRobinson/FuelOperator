@@ -144,7 +144,7 @@
     
     CGRect rect = CGRectMake(0, 0, tableView.bounds.size.width, HEADER_HEIGHT);
     UIView *headerView = [[UIView alloc] initWithFrame:rect];
-    headerView.backgroundColor = [UIColor fopYellowColor];
+    headerView.backgroundColor = [UIColor fopOrangeColor];
     
     rect.origin.x = 5;
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:rect];

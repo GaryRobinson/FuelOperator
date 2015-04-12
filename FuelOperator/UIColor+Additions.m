@@ -30,7 +30,7 @@
     return [self colorWithRed:34/255. green:38/255. blue:43/255. alpha:1.0];
 }
 
-+ (UIColor *)fopYellowColor
++ (UIColor *)fopOrangeColor
 {
     return [self colorWithRed:246/255. green:174/255. blue:106/255. alpha:1.0];
 }

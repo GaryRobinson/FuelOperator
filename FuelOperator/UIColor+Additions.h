@@ -14,7 +14,7 @@
 + (UIColor *)fopDarkText;
 + (UIColor *)fopRegularText;
 + (UIColor *)fopDarkGreyColor;
-+ (UIColor *)fopYellowColor;
++ (UIColor *)fopOrangeColor;
 + (UIColor *)fopOffWhiteColor;
 + (UIColor *)fopWhiteColor;
 + (UIColor *)fopProgressBackgroundColor;
